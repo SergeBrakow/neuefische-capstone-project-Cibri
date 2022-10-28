@@ -13,8 +13,8 @@ export default function Home() {
   }
 
   function logout(){
-    navigate("/");
     localStorage.removeItem(`user`);
+    navigate("/login");
   }
 
   console.log(user);
