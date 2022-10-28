@@ -26,7 +26,7 @@ export default function Home() {
         <h3>{user}</h3>
         <StyledDiv>
           <p>test</p>
-          <button onClick={()=> {logout(); navigate("/login")}}>logout</button>
+          <button onClick={()=> {logout();}}>logout</button>
         </StyledDiv>
       </StyledSection>
     </>
