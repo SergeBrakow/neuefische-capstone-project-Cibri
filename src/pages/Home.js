@@ -6,6 +6,7 @@ export default function Home() {
   const navigate = useNavigate(); 
   const user = localStorage.getItem(`user`);
 
+  // in case somebody enter over the link /home without going over login
   if(user === null) {
     return ( <>
         <button onClick={()=> navigate("/login")}>Sorry, but you need to login first!</button>
@@ -22,15 +23,15 @@ export default function Home() {
       <h1>home</h1>
       <h5>not ready</h5>
       <StyledNavBar>
-        <Div1>
+        <NavBarElement>
           <button onClick={()=> logout()}>{user} logout</button>
-        </Div1>
+        </NavBarElement>
       </StyledNavBar>
     </div>
   );
 }
 
-export const Div1 = styled.div `
+export const NavBarElement = styled.div `
 border: 0.1 px solid;
 width: 100%;
 display: grid;
