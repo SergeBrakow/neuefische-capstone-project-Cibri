@@ -45,5 +45,4 @@ export const StyledNavBar = styled.section`
   width: 100vw;
   height: 45px;
   bottom: 0;
-  layer: 22;  
 `
