@@ -58,7 +58,7 @@ export const StyledHead = styled.div`
 `
 
 export const StyledTimeLine = styled.div`
-  margin: 119px 0 50px 0; 
+  margin: 119px 0 49px 0; 
 `
 
 export const StyledEntry = styled.div`
