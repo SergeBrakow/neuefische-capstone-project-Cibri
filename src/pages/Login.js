@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
 
-  localStorage.removeItem(`user`);
-  
   function loginAs(role){
     localStorage.setItem('user', role);
   }
