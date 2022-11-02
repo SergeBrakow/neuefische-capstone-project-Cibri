@@ -18,6 +18,4 @@ export default function getDate(value){
     if(value === "hour") {
         return ( newDate.getHours())
     }
-    
-    return [];
 }
