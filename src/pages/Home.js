@@ -41,6 +41,9 @@ export default function Home() {
         <NavBarElement>
           <button onClick={()=> logout()}>{user} logout</button>
         </NavBarElement>
+        <NavBarElement>
+          <button onClick={()=> navigate("/new")}>neuer Eintrag</button>
+        </NavBarElement>
       </StyledNavBar>
     </div>
   );
@@ -51,7 +54,7 @@ export const StyledHead = styled.div`
   border-bottom: 1px solid;
   background-color: white;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 120px;
   top: 0;
   layer: 10; 
@@ -94,14 +97,14 @@ export const StyledNavBar = styled.section`
   display: flex;
   justify-content: space-between;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 50px;
   bottom: 0;
   layer: 10; 
 `
 
 export const NavBarElement = styled.div `
-  border: 0.1 px solid;
+  border: 1px solid;
   width: 100%;
   display: grid;
   float: left;

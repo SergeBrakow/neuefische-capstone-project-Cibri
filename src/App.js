@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import New from "./pages/New";
 
 function App() {
 
@@ -18,6 +19,10 @@ function App() {
         <Route
           path="home"
           element={<Home />}
+        />
+         <Route
+          path="new"
+          element={<New />}
         />
         <Route path="*" element={<ErrorPage />} />
       </Route>
