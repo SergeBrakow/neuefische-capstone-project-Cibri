@@ -11,24 +11,24 @@ export default function NavBarNewOrder (prop){
     }
     
     return(
-        <StyledNavBar>
+      <div>
         {prop.page === "home" ?
-                <>
-                <NavBarElement>
+          <StyledNavBar> 
+              <NavBarElement>
                 <button onClick={()=> logout()}>{prop.user} logout</button>
-                </NavBarElement>
-                <NavBarElement>
+              </NavBarElement>
+              <NavBarElement>
                 <button onClick={()=> navigate("/new")}>neuer Eintrag</button>
-                </NavBarElement>
-                </>
-        :   
-        <>
-                <NavBarElement>
-                <button onClick={()=> navigate("/home")}>zurück</button>
-                </NavBarElement>
-                </>
-         }
-        </StyledNavBar>
+              </NavBarElement>   
+          </StyledNavBar>
+          : 
+          <StyledNavBar>   
+            <NavBarElement>
+              <button onClick={()=> navigate("/home")}>zurück</button>
+            </NavBarElement>
+          </StyledNavBar>
+        }
+    </div>
     );
 }
 
@@ -41,7 +41,7 @@ export const StyledNavBar = styled.section`
   position: fixed;
   width: 100%;
   height: 50px;
-  bottom: 0;
+  bottom: 0px;
   layer: 10; 
 `
 
