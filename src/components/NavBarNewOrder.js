@@ -9,7 +9,7 @@ export default function NavBarNewOrder (prop){
         localStorage.removeItem(`user`);
         navigate("/login");
     }
-    console.log(prop);
+    
     return(
         <StyledNavBar>
         {prop.page === "home" ?

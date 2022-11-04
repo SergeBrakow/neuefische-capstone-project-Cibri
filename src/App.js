@@ -5,6 +5,8 @@ import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import New from "./pages/New";
+import Customer from "./pages/Customer"
+import Order from "./pages/Order";
 
 function App() {
 
@@ -23,6 +25,14 @@ function App() {
          <Route
           path="new"
           element={<New />}
+        />
+        <Route
+          path="newOrder"
+          element={<Order />}
+        />
+        <Route
+          path="newCustomer"
+          element={<Customer />}
         />
         <Route path="*" element={<ErrorPage />} />
       </Route>
