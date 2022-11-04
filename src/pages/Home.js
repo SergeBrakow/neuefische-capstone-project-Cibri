@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import getDate from "../utils/getDate";
 import EntryCard from "../components/EntryCard";
+import NavBarNewOrder from "../components/NavBarNewOrder";
 
 
 
@@ -14,11 +15,6 @@ export default function Home() {
     return ( <>
         <button onClick={()=> navigate("/login")}>Sorry, but you need to login first!</button>
         </>);
-  }
-
-  function logout(){
-    localStorage.removeItem(`user`);
-    navigate("/login");
   }
   
   return(
@@ -37,14 +33,7 @@ export default function Home() {
               </StyledEntry> 
             ))}
       </StyledTimeLine>
-      <StyledNavBar>
-        <NavBarElement>
-          <button onClick={()=> logout()}>{user} logout</button>
-        </NavBarElement>
-        <NavBarElement>
-          <button onClick={()=> navigate("/new")}>neuer Eintrag</button>
-        </NavBarElement>
-      </StyledNavBar>
+      <NavBarNewOrder user={user} page={"home"}/>
     </div>
   );
 }
@@ -89,24 +78,4 @@ export const EntryRow=styled.div`
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
-`
-
-export const StyledNavBar = styled.section`
-  border-top: 1px solid;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  height: 50px;
-  bottom: 0;
-  layer: 10; 
-`
-
-export const NavBarElement = styled.div `
-  border: 1px solid;
-  width: 100%;
-  display: grid;
-  float: left;
-  width: 33.33%;
 `
