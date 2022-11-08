@@ -11,7 +11,7 @@ export default function getDate(value){
         return ( days[newDate.getDate()]); 
     }
 
-    if(value === "time") {
+    if(value === "timeNow") {
         return ( newDate.getHours() +":" + newDate.getMinutes())
     }
 
