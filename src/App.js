@@ -16,7 +16,6 @@ function App() {
   const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
   const user = localStorage.getItem(`user`);
 
-  console.log(orderList);
   function createOrder(newId, newName, newHour, newMinute, newNote){
     setOrderList([
       {
