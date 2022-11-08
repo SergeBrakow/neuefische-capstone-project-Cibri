@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import getDate from "../utils/getDate";
-import EntryCard from "../components/EntryCard";
 import NavBarNewOrder from "../components/NavBarNewOrder";
 
 
@@ -20,7 +19,7 @@ export default function Home() {
   return(
     <div> 
       <StyledHead>
-        <h1>{getDate("dayName")}</h1>
+        <p>{getDate("dayName")}</p>
         <p>{getDate("day")}</p>
       </StyledHead>
       <StyledTimeLine>
