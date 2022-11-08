@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useId, useState } from "react";
 
 import Layout from "./components/Layout";
 import ErrorPage from "./pages/ErrorPage";
@@ -6,9 +7,30 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import New from "./pages/New";
 import Customer from "./pages/Customer"
-import Order from "./pages/Order";
+import Order from "./pages/NewOrder";
+import { toLocalStorage, fromLocalStorage } from "./utils/localStorage";
+
+
 
 function App() {
+  const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
+  const user = localStorage.getItem(`user`);
+
+  console.log(orderList);
+  function createOrder(newId, newName, newHour, newMinute, newNote){
+    setOrderList([
+      {
+        id: newId,
+        name: newName,
+        hour: parseInt(newHour),
+        minute: parseInt(newMinute),
+        owner: user,
+        note: newNote,
+      },
+      ...orderList,
+    ]);
+    toLocalStorage("orderList", orderList);
+  }
 
   return (
     <Routes>
@@ -20,7 +42,8 @@ function App() {
         />
         <Route
           path="home"
-          element={<Home />}
+          element={<Home  
+            entries={orderList}/>}
         />
          <Route
           path="new"
@@ -28,7 +51,8 @@ function App() {
         />
         <Route
           path="newOrder"
-          element={<Order />}
+          element={<Order 
+            onHandleSubmit={createOrder}/>}
         />
         <Route
           path="newCustomer"
