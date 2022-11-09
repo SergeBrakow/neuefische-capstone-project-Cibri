@@ -5,14 +5,13 @@ import NavBarNewOrder from "../components/NavBarNewOrder";
 
 
 
-export default function Home() {
+export default function Home({user, entries}) {
   const navigate = useNavigate(); 
-  const user = localStorage.getItem(`user`);
-
+  
   // in case somebody enter over the link /home without going over login
-  if(user === null) {
+  if(user.name === undefined) {
     return ( <>
-        <button onClick={()=> navigate("/login")}>Sorry, but you need to login first!</button>
+        <button onClick={()=> navigate("/")}>Sorry, but you need to login first!</button>
         </>);
   }
   

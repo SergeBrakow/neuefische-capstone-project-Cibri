@@ -14,8 +14,10 @@ import { toLocalStorage, fromLocalStorage } from "./utils/localStorage";
 
 function App() {
   const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
-  const user = localStorage.getItem(`user`);
+  const [user, setUser] = useState(fromLocalStorage("loggedUser"));
 
+
+  
   function createOrder(newId, newName, newHour, newMinute, newNote){
     setOrderList([
       {
@@ -34,14 +36,13 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Login />} />
-        <Route
-          path="login"
-          element={<Login />}
+        <Route index 
+          element={<Login setUser={setUser}/>}
         />
         <Route
           path="home"
           element={<Home  
+            user={user}
             entries={orderList}/>}
         />
          <Route

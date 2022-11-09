@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { fromLocalStorage, toLocalStorage } from "../utils/localStorage";
 
-export default function Login() {
+export default function Login({setUser}) {
   const navigate = useNavigate();
 
-  function loginAs(role){
-    localStorage.setItem('user', role);
+  function loginAs(loginName){
+    const userList = fromLocalStorage("users");
+    let user = userList.filter((item) => item.name === loginName);
+    user = user[0];
+    
+    toLocalStorage("loggedUser", user);
+    setUser(user);
+    navigate("/home");
   }
 
   return(
@@ -13,8 +20,8 @@ export default function Login() {
       <StyledWelcomeName>Cibri</StyledWelcomeName>
       <StyledSection>
         <h3>login as</h3>
-        <button onClick={()=> { loginAs("user");  navigate("/home");}}>user</button>
-        <button onClick={()=> { loginAs("admin"); navigate("/home");}}>admin</button>
+        <button onClick={()=> { loginAs("User1") }}>user</button>
+        <button onClick={()=> { loginAs("Admin1") }}>admin</button>
       </StyledSection>
     </>
   );

@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { deleteFromLocalStorage, fromLocalStorage } from "../utils/localStorage";
 
 
 export default function NavBarNewOrder (prop){
     const navigate = useNavigate();
 
     function logout(){
-        localStorage.removeItem(`user`);
-        navigate("/login");
+      deleteFromLocalStorage("loggedUser");
+      navigate("/");
     }
     
     return(
@@ -15,7 +16,7 @@ export default function NavBarNewOrder (prop){
         {prop.page === "home" ?
           <StyledNavBar> 
               <NavBarElement>
-                <button onClick={()=> logout()}>{prop.user} logout</button>
+                <button onClick={()=> logout()}>{prop.user.name} logout</button>
               </NavBarElement>
               <NavBarElement>
                 <button onClick={()=> navigate("/new")}>neuer Eintrag</button>
