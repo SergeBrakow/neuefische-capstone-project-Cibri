@@ -8,10 +8,10 @@ export default function getDate(value){
 
     if(value === "dayName") {
         const days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-        return ( days[newDate.getDate()]); 
+        return ( days[newDate.getDay()]); 
     }
 
-    if(value === "time") {
+    if(value === "timeNow") {
         return ( newDate.getHours() +":" + newDate.getMinutes())
     }
 

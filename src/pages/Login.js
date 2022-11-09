@@ -1,32 +1,47 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { fromLocalStorage, toLocalStorage } from "../utils/localStorage";
 
-export default function Login() {
+export default function Login({setUser}) {
   const navigate = useNavigate();
 
-  function loginAs(role){
-    localStorage.setItem('user', role);
+  function loginAs(loginName){
+    const userList = fromLocalStorage("users");
+    let user = userList.find((item) =>{return item.name === loginName});
+    
+    if(user === undefined) { 
+      navigate("/");
+      alert("Your login data could not be found!");
+    } else {
+      toLocalStorage("loggedUser", user);
+      setUser(user);
+      navigate("/home");
+    }
   }
 
   return(
     <> 
-      <StyledWelcomeName>Cibri</StyledWelcomeName>
+      <StyledWelcomeName>
+        <h1>Cibri</h1>
+        <p>your service app</p>
+      </StyledWelcomeName>
       <StyledSection>
-        <h3>login as</h3>
-        <button onClick={()=> { loginAs("user");  navigate("/home");}}>user</button>
-        <button onClick={()=> { loginAs("admin"); navigate("/home");}}>admin</button>
+        <h2>login as</h2>
+        <button onClick={()=> { loginAs("User1") }}>user</button>
+        <button onClick={()=> { loginAs("Admin1") }}>admin</button>
       </StyledSection>
     </>
   );
 }
 
-export const StyledWelcomeName = styled.h1`
-margin-bottom: 100px;
+export const StyledWelcomeName = styled.div`
+  margin-bottom: 100px;
 `
 
 export const StyledSection = styled.section`
--webkit-box-shadow:inset 1px 1px 10px 1px #8CFF40;
-box-shadow:inset 1px 1px 10px 1px #BEBEBE;
-
-padding: 10px;
+  border-top: 1px solid;
+  max-width: 25em;
+  min-height: 25em;
+  margin: auto;
+  padding: 10px;
 `
