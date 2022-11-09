@@ -1,5 +1,6 @@
 import { useNavigate} from "react-router-dom"; 
-import { useId, useState } from "react";
+import { useState } from "react";
+import { nanoid } from "nanoid";
 import styled from "styled-components";
 
 import getDate from "../utils/getDate";
@@ -9,7 +10,7 @@ export default function NewOrder({onHandleSubmit}){
     const navigate = useNavigate(); 
     const [orderType, setOrderType] = useState("Eintrag");
     
-    const orderId= useId();
+    const orderId= nanoid();
     function createOrder(event) {
         event.preventDefault();       
         const formData = new FormData(event.target);
