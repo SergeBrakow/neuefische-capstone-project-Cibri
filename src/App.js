@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import New from "./pages/New";
 import Customer from "./pages/Customer"
-import Order from "./pages/NewOrder";
+import NewOrder from "./pages/NewOrder";
 import { toLocalStorage, fromLocalStorage } from "./utils/localStorage";
 
 
@@ -50,7 +50,7 @@ function App() {
         />
         <Route
           path="newOrder"
-          element={<Order 
+          element={<NewOrder 
             onHandleSubmit={createOrder}/>}
         />
         <Route
