@@ -7,7 +7,8 @@ export default function Login({setUser}) {
 
   function loginAs(loginName){
     const userList = fromLocalStorage("users");
-    let user = userList.filter((item) => item.name === loginName);
+    // let user = userList.filter((item) => item.name === loginName);
+    let user = userList.find((item) => item.name === setUser);
     user = user[0];
     
     toLocalStorage("loggedUser", user);
@@ -30,7 +31,7 @@ export default function Login({setUser}) {
   );
 }
 
-export const StyledWelcomeName = styled.h1`
+export const StyledWelcomeName = styled.div`
   margin-bottom: 100px;
 `
 
