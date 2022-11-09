@@ -17,9 +17,12 @@ export default function Login({setUser}) {
 
   return(
     <> 
-      <StyledWelcomeName>Cibri</StyledWelcomeName>
+      <StyledWelcomeName>
+        <h1>Cibri</h1>
+        <p>your service app</p>
+      </StyledWelcomeName>
       <StyledSection>
-        <h3>login as</h3>
+        <h2>login as</h2>
         <button onClick={()=> { loginAs("User1") }}>user</button>
         <button onClick={()=> { loginAs("Admin1") }}>admin</button>
       </StyledSection>
@@ -28,12 +31,13 @@ export default function Login({setUser}) {
 }
 
 export const StyledWelcomeName = styled.h1`
-margin-bottom: 100px;
+  margin-bottom: 100px;
 `
 
 export const StyledSection = styled.section`
--webkit-box-shadow:inset 1px 1px 10px 1px #8CFF40;
-box-shadow:inset 1px 1px 10px 1px #BEBEBE;
-
-padding: 10px;
+  border-top: 1px solid;
+  max-width: 25em;
+  min-height: 25em;
+  margin: auto;
+  padding: 10px;
 `
