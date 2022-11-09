@@ -7,13 +7,16 @@ export default function Login({setUser}) {
 
   function loginAs(loginName){
     const userList = fromLocalStorage("users");
-    // let user = userList.filter((item) => item.name === loginName);
-    let user = userList.find((item) => item.name === setUser);
-    user = user[0];
+    let user = userList.find((item) =>{return item.name === loginName});
     
-    toLocalStorage("loggedUser", user);
-    setUser(user);
-    navigate("/home");
+    if(user === undefined) { 
+      navigate("/");
+      alert("Your login data could not be found!");
+    } else {
+      toLocalStorage("loggedUser", user);
+      setUser(user);
+      navigate("/home");
+    }
   }
 
   return(
