@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-import editIcon from "../assets/icons/edit_black_24dp.svg"
-
 export default function EntryCard({entry}){
     const [showNote, setShowNote] = useState();
     const navigate = useNavigate();
