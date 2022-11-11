@@ -1,8 +1,9 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
 import getDate from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
-
+import EntryCard from "../components/EntryCard";
 
 
 export default function Home({user, entries}) {
@@ -26,7 +27,11 @@ export default function Home({user, entries}) {
               <StyledEntry key={index}>
                 <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
                 <EntryRow>
-                  <p>no entry</p>
+                  {entries.map((entry) => entry.hour === index ? 
+                    <EntryCard 
+                      key={entry.id} 
+                      entry={entry} />
+                    : "")}
                 </EntryRow> 
               </StyledEntry> 
             ))}
