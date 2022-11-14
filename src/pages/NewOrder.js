@@ -18,7 +18,7 @@ export default function NewOrder({onHandleSubmit}){
 
         let orderDate = new Date();
         orderDate.setHours(order_time.slice(0, 2));
-        orderDate.setMinutes(order_time.slice(0, 2));
+        orderDate.setMinutes(order_time.slice(3, 5));
 
         onHandleSubmit(orderId, order_name, orderDate, note);
         navigate("/home");
