@@ -34,7 +34,7 @@ export default function EntryCard({entry}){
     );
 }
 
-export const StyledCard = styled.div` 
+export const StyledCard = styled.article` 
     border: solid 1px;
     border-radius: 10px;
     margin: 5px;
