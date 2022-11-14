@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Layout from "./components/Layout";
 import ErrorPage from "./pages/ErrorPage";
@@ -18,6 +18,9 @@ function App() {
   const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
   const [user, setUser] = useState(fromLocalStorage("loggedUser"));
 
+  useEffect(() => {
+    toLocalStorage("orderList", orderList);
+  }, [orderList]);
 
   function createOrder(newId, newName, newDate, newNote){
     setOrderList([
@@ -30,7 +33,6 @@ function App() {
       },
       ...orderList,
     ]);
-    toLocalStorage("orderList", orderList);
   }
 
   return (
