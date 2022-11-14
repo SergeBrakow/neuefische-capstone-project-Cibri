@@ -5,7 +5,7 @@ export default function ErrorPage() {
   return (
     <>
       <h4>404 Page Not Found</h4>
-      <button onClick={() => navigate("/login")}>to login</button>
+      <button onClick={() => navigate("/")}>to login</button>
     </>
   );
 }

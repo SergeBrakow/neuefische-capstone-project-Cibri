@@ -1,13 +1,17 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
 import getDate from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
-
+import EntryCard from "../components/EntryCard";
 
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
-  
+  const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
+  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
+
+
   // in case somebody enter over the link /home without going over login
   if(user.name === undefined) {
     return ( <>
@@ -22,11 +26,15 @@ export default function Home({user, entries}) {
         <p>{getDate("day")}</p>
       </StyledHead>
       <StyledTimeLine>
-            {[...Array(25)].map((element, index) => ( 
+      {[...Array(25)].map((element, index) => ( 
               <StyledEntry key={index}>
                 <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
-                <EntryRow>
-                  <p>no entry</p>
+                 <EntryRow>
+                   {entriesToday.map((entry) => entry.date.hour === index ? 
+                    <EntryCard 
+                      key={entry.id} 
+                      entry={entry} />
+                    : "")}
                 </EntryRow> 
               </StyledEntry> 
             ))}
