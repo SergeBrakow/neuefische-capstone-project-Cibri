@@ -8,8 +8,23 @@ import EntryCard from "../components/EntryCard";
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
+
+  // sort the today entries 
   const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
-  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
+  const entriesTodayUnsort = entries.filter( (entry) => entry.date.dateStamp === showDate);
+  let itemList=[];
+  for(let iHours=0; iHours<25; iHours++){
+    for(let iMinutes=0; iMinutes<60; iMinutes++){
+      entriesTodayUnsort.forEach(element => {
+        if((element.date.hour === iHours) && (element.date.minute === iMinutes)){
+          itemList = itemList.concat(element);
+        }
+      });
+    }
+  }
+  // sorted entry list for the shown day
+  const entriesToday = itemList;
+
 
 
   // in case somebody enter over the link /home without going over login
