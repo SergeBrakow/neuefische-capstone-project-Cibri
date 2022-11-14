@@ -20,9 +20,12 @@ export default function EntryCard({entry}){
                 {showNote ? 
                     <NoteDiv>
                         <div>
-                            <PBoltInShow>Notizen</PBoltInShow>
-                            <p>{entry.note}</p>
-                            <PBoltInShow>verlinkte Kunden</PBoltInShow>
+                            {entry.note === "" ? "": 
+                            <>
+                                <PBoltInShow>Notizen</PBoltInShow>
+                                <p>{entry.note}</p>
+                            </>
+                            }
                             <PBoltInShow>verlinkte User</PBoltInShow>
                             <p>{entry.owner}</p>
                         </div>
