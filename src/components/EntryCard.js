@@ -12,10 +12,10 @@ export default function EntryCard({entry}){
                         <StyledPTitel>{entry.name}</StyledPTitel>
                         <p>{entry.hour <10 ? "0" + entry.hour : entry.hour}:{entry.minute <10 ? "0" + entry.minute : entry.minute}</p>
                 </CardSection>
-                <ButtonDiv>
+                <ButtonContainer>
                     <button onClick={()=> navigate("/viewOrder")}>view</button>
                     <button onClick={()=> navigate("/editOrder")}>edit</button>
-                </ButtonDiv>
+                </ButtonContainer>
             </div>
                 {showNote ? 
                     <NoteDiv>
@@ -77,7 +77,7 @@ export const PBoltInShow=styled.p`
     padding-top: 10px;
 `
 
-export const ButtonDiv = styled.div`
+export const ButtonContainer = styled.div`
     flex-direction: column;
 `
     
