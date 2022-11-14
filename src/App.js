@@ -17,7 +17,8 @@ import { toLocalStorage, fromLocalStorage } from "./utils/localStorage";
 function App() {
   const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
   const [user, setUser] = useState(fromLocalStorage("loggedUser"));
-
+  document.title = "Cibri";
+  
   useEffect(() => {
     toLocalStorage("orderList", orderList);
   }, [orderList]);
