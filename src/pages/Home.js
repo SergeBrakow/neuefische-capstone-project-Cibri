@@ -8,6 +8,9 @@ import EntryCard from "../components/EntryCard";
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
+  const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
+  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
+
 
   // in case somebody enter over the link /home without going over login
   if(user.name === undefined) {
@@ -15,7 +18,7 @@ export default function Home({user, entries}) {
         <button onClick={()=> navigate("/")}>Sorry, but you need to login first!</button>
         </>);
   }
-
+  
   return(
     <div> 
       <StyledHead>
@@ -27,7 +30,7 @@ export default function Home({user, entries}) {
               <StyledEntry key={index}>
                 <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
                  <EntryRow>
-                   {entries.map((entry) => entry.date.hour === index ? 
+                   {entriesToday.map((entry) => entry.date.hour === index ? 
                     <EntryCard 
                       key={entry.id} 
                       entry={entry} />
