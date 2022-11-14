@@ -17,8 +17,7 @@ export default function EntryCard({entry}){
                     <button onClick={()=> navigate("/editOrder")}>edit</button>
                 </ButtonContainer>
             </div>
-                {showNote ? 
-                    <NoteDiv>
+                {showNote && <NoteDiv>
                         <div>
                             {entry.note === "" ? "": 
                             <>
@@ -29,8 +28,7 @@ export default function EntryCard({entry}){
                             <PBoltInShow>verlinkte User</PBoltInShow>
                             <p>{entry.owner}</p>
                         </div>
-                    </NoteDiv>
-                    :""}
+                    </NoteDiv>}
             <button onClick={() =>setShowNote ((previousShowNote) => !previousShowNote)}>show</button>
         </StyledCard>
     );
