@@ -19,15 +19,13 @@ function App() {
   const [user, setUser] = useState(fromLocalStorage("loggedUser"));
 
 
-  
-  function createOrder(newId, newName, newHour, newMinute, newNote){
+  function createOrder(newId, newName, newDate, newNote){
     setOrderList([
       {
         id: newId,
         name: newName,
-        hour: parseInt(newHour),
-        minute: parseInt(newMinute),
-        owner: user,
+        date: newDate,
+        owner: user.name,
         note: newNote,
       },
       ...orderList,

@@ -10,7 +10,7 @@ export default function EntryCard({entry}){
             <div>
                 <CardSection>
                         <StyledPTitel>{entry.name}</StyledPTitel>
-                        <p>{entry.hour <10 ? "0" + entry.hour : entry.hour}:{entry.minute <10 ? "0" + entry.minute : entry.minute}</p>
+                        <p>{entry.date.hour <10 ? "0" + entry.date.hour : entry.date.hour}:{entry.date.minute <10 ? "0" + entry.date.minute : entry.date.minute}</p>
                 </CardSection>
                 <ButtonContainer>
                     <button onClick={()=> navigate("/viewOrder")}>view</button>

@@ -16,11 +16,13 @@ export default function NewOrder({onHandleSubmit}){
         const formData = new FormData(event.target);
         const { order_name, order_time, note} = Object.fromEntries(formData);
 
-        let orderDate = new Date();
-        orderDate.setHours(order_time.slice(0, 2));
-        orderDate.setMinutes(order_time.slice(3, 5));
-
-        onHandleSubmit(orderId, order_name, orderDate, note);
+        const ordayDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
+        const orderDateFull= {
+            dateStamp: ordayDate,
+            hour:   Number(order_time.slice(0, 2)),
+            minute: Number(order_time.slice(3, 5)),
+        }
+        onHandleSubmit(orderId, order_name, orderDateFull, note);
         navigate("/home");
    }
    
