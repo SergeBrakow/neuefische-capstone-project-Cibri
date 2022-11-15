@@ -8,8 +8,11 @@ import EntryCard from "../components/EntryCard";
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
+
+  // sort the today entries 
   const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
   const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
+
 
 
   // in case somebody enter over the link /home without going over login
@@ -26,18 +29,24 @@ export default function Home({user, entries}) {
         <p>{getDate("day")}</p>
       </StyledHead>
       <StyledTimeLine>
-      {[...Array(25)].map((element, index) => ( 
-              <StyledEntry key={index}>
-                <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
-                 <EntryRow>
-                   {entriesToday.map((entry) => entry.date.hour === index ? 
-                    <EntryCard 
-                      key={entry.id} 
-                      entry={entry} />
-                    : "")}
+        {[...Array(25)] 
+          .map((element, index) => ( 
+            <StyledEntry key={index}>
+              <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
+                <EntryRow>
+                  {entriesToday
+                    .map((entry) => entry.date.hour === index ? (
+                      <EntryCard key={entry.id} entry={entry} />
+                            ) : ("")
+                    ).sort((a, b) => 
+                      a.props?.entry?.date?.minute - b.props?.entry?.date?.minute
+                      )
+                  }
                 </EntryRow> 
               </StyledEntry> 
-            ))}
+            )
+          )
+        }
       </StyledTimeLine>
       <NavBarNewOrder user={user} page={"home"}/>
     </div>
