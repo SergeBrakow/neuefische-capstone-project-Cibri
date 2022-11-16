@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -12,10 +12,12 @@ import EntryCard from "../components/EntryCard";
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
-  const [startDate, setStartDate] = useState(new Date());
+  const {dateString} = useParams();
+  const showDate = new Date(Number(dateString.slice(6, 10)),
+                            (Number((dateString.slice(3, 5)-1))), 
+                              Number(dateString.slice(0, 2)));
 
-  // sort the today entries 
-  const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
+  const [startDate, setStartDate] = useState(new Date(showDate));
   const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
 
 

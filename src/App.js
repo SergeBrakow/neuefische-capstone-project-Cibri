@@ -43,6 +43,12 @@ function App() {
           element={<Login setUser={setUser}/>}
         />
         <Route
+          path="home/:dateString"
+          element={<Home  
+            user={user}
+            entries={orderList}/>}
+        />
+        <Route
           path="home"
           element={<Home  
             user={user}
