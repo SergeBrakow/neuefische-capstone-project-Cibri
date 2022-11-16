@@ -24,10 +24,10 @@ export default function Home({user, entries}) {
                               Number(dateString.slice(0, 2)));
   
                               
-  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
+  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === dateString);
 
 
-  
+
   // in case somebody enter over the link /home without going over login
   if(user.name === undefined) {
     return ( <>
