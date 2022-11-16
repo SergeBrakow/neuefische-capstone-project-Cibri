@@ -38,7 +38,6 @@ export const StyledCard = styled.article`
     border: solid 1px;
     border-radius: 10px;
     margin: 5px;
-    box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.8);
     div{
         display: flex;
     } 
