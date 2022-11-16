@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 import getDate from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
@@ -8,6 +12,7 @@ import EntryCard from "../components/EntryCard";
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
+  const [startDate, setStartDate] = useState(new Date());
 
   // sort the today entries 
   const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
@@ -21,12 +26,14 @@ export default function Home({user, entries}) {
         <button onClick={()=> navigate("/")}>Sorry, but you need to login first!</button>
         </>);
   }
-  
   return(
     <div> 
       <StyledHead>
-        <p>{getDate("dayName")}</p>
-        <p>{getDate("day")}</p>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="dd.MM.yyyy"
+          />
       </StyledHead>
       <StyledTimeLine>
         {[...Array(25)] 
