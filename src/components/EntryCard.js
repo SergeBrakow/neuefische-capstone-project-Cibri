@@ -10,7 +10,7 @@ export default function EntryCard({entry}){
             <div>
                 <CardSection>
                         <StyledPTitel>{entry.name}</StyledPTitel>
-                        <p>{entry.date.hour <10 ? "0" + entry.date.hour : entry.date.hour}:{entry.date.minute <10 ? "0" + entry.date.minute : entry.date.minute}</p>
+                        <p>{entry.date.hour.toString().padStart(2, '0')}:{entry.date.minute.toString().padStart(2, '0')}</p>
                 </CardSection>
                 <ButtonContainer>
                     <button onClick={()=> navigate("/viewOrder")}>view</button>
@@ -38,6 +38,7 @@ export const StyledCard = styled.article`
     border: solid 1px;
     border-radius: 10px;
     margin: 5px;
+    box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.8);
     div{
         display: flex;
     } 

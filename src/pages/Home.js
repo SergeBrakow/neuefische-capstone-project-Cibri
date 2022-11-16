@@ -41,7 +41,7 @@ export default function Home({user, entries}) {
         {[...Array(25)] 
           .map((element, index) => ( 
             <StyledEntry key={index}>
-              <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
+              <StyledTimeText>{index.toString().padStart(2, '0')}:00</StyledTimeText>
                 <EntryRow>
                   {entriesToday
                     .map((entry) => entry.date.hour === index ? (
