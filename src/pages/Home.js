@@ -5,37 +5,80 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import getDate from "../utils/getDate";
+import { getDateAfter, getDateBefore, getDayNameLong, getDayNameShort } from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
 import EntryCard from "../components/EntryCard";
 
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
-  const {dateString} = useParams();
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  let {dateString} = useParams();
+  if(dateString === undefined || dateString.length !== 10) {
+    dateString = [new Date().getDate(), (new Date().getMonth() +1), new Date().getFullYear()].join('.');
+  }
+
   const showDate = new Date(Number(dateString.slice(6, 10)),
                             (Number((dateString.slice(3, 5)-1))), 
                               Number(dateString.slice(0, 2)));
-
-  const [startDate, setStartDate] = useState(new Date(showDate));
+  
+                              
   const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
 
 
-
+  
   // in case somebody enter over the link /home without going over login
   if(user.name === undefined) {
     return ( <>
         <button onClick={()=> navigate("/")}>Sorry, but you need to login first!</button>
         </>);
   }
+
+  function goToDatePrev(){
+    const searchedDate = getDateBefore(dateString);
+    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+
+  }
+  
+  function gotoDateNext(){
+    const searchedDate = getDateAfter(dateString);
+    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+  }
+  function goToDate(toDate){
+    return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
+  }
   return(
     <div> 
       <StyledHead>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="dd.MM.yyyy"
-          />
+        <p>{getDayNameLong(showDate)}</p>
+          {showDatePicker ? (
+            <HeadNavBar>
+               <HeadNavBarMidleElement>
+                <DatePicker
+                  selected={showDate}
+                  onChange={(date) => {setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker); navigate(`/home/${goToDate(date)}`)}}
+                  dateFormat="dd.MM.yyyy"
+                />
+                </HeadNavBarMidleElement>
+                <HeadNavBarElement>
+                  <button onClick={() =>setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker)}>Abbrechen</button>
+                </HeadNavBarElement>
+              </HeadNavBar>
+            ) : (
+              <HeadNavBar>
+                <HeadNavBarElement>
+                  <button onClick={()=> navigate(`/home/${goToDatePrev()}`)}>{getDayNameShort(getDateBefore(dateString))}</button>
+                </HeadNavBarElement>
+                <HeadNavBarMidleElement>
+                  <button onClick={() =>setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker)}>{dateString}</button>
+                </HeadNavBarMidleElement>
+                <HeadNavBarElement>
+                  <button onClick={()=> navigate(`/home/${gotoDateNext()}`)}>{getDayNameShort(getDateAfter(dateString))}</button>
+                </HeadNavBarElement>
+              </HeadNavBar>
+            )
+          }
       </StyledHead>
       <StyledTimeLine>
         {[...Array(25)] 
@@ -68,9 +111,40 @@ export const StyledHead = styled.div`
   background-color: white;
   position: fixed;
   width: 100%;
-  height: 120px;
+  height: 95px;
   top: 0;
   layer: 10; 
+`
+
+export const HeadNavBar =styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  height: 40px;
+  button{
+    background-color: white;
+    border: 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover  {
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+  }
+`
+
+export const HeadNavBarMidleElement = styled.div`
+  width: 100%;
+  display: grid;
+  width: 60%;
+  margin: 2px;
+`
+
+export const HeadNavBarElement = styled.div`
+  width: 100%;
+  display: grid;
+  width: 20%;
+  margin: 2px;
 `
 
 export const StyledTimeLine = styled.div`
