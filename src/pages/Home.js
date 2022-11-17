@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import { getDateAfter, getDateBefore, getDayNameLong, getDayNameShort } from "../utils/getDate";
+import { getDateNext, getDatePrevious, getDateString, getDateStringNext, getDateStringPrevious, getDayNameLong, getDayNameShort } from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
 import EntryCard from "../components/EntryCard";
 
@@ -22,7 +22,7 @@ export default function Home({user, entries}) {
   const showDate = new Date(Number(dateString.slice(6, 10)),
                             (Number((dateString.slice(3, 5)-1))), 
                               Number(dateString.slice(0, 2)));
-  
+          
                               
   const entriesToday = entries.filter( (entry) => entry.date.dateStamp === dateString);
 
@@ -35,19 +35,6 @@ export default function Home({user, entries}) {
         </>);
   }
 
-  function goToDatePrev(){
-    const searchedDate = getDateBefore(dateString);
-    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
-
-  }
-  
-  function gotoDateNext(){
-    const searchedDate = getDateAfter(dateString);
-    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
-  }
-  function goToDate(toDate){
-    return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
-  }
   return(
     <div> 
       <StyledHead>
@@ -57,7 +44,7 @@ export default function Home({user, entries}) {
                <HeadNavBarMidleElement>
                 <DatePicker
                   selected={showDate}
-                  onChange={(date) => {setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker); navigate(`/home/${goToDate(date)}`)}}
+                  onChange={(date) => {setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker); navigate(`/home/${getDateString(date)}`)}}
                   dateFormat="dd.MM.yyyy"
                 />
                 </HeadNavBarMidleElement>
@@ -68,13 +55,13 @@ export default function Home({user, entries}) {
             ) : (
               <HeadNavBar>
                 <HeadNavBarElement>
-                  <button onClick={()=> navigate(`/home/${goToDatePrev()}`)}>{getDayNameShort(getDateBefore(dateString))}</button>
+                  <button onClick={()=> navigate(`/home/${getDateStringPrevious(showDate)}`)}>{getDayNameShort(getDatePrevious(showDate))}</button>
                 </HeadNavBarElement>
                 <HeadNavBarMidleElement>
                   <button onClick={() =>setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker)}>{dateString}</button>
                 </HeadNavBarMidleElement>
                 <HeadNavBarElement>
-                  <button onClick={()=> navigate(`/home/${gotoDateNext()}`)}>{getDayNameShort(getDateAfter(dateString))}</button>
+                  <button onClick={()=> navigate(`/home/${getDateStringNext(showDate)}`)}>{getDayNameShort(getDateNext(showDate))}</button>
                 </HeadNavBarElement>
               </HeadNavBar>
             )

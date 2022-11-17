@@ -34,48 +34,28 @@ export function getDayNameShort(date) {
     return new Date(year, month, 0).getDate();
   }
 
-export function getDateBefore (dateString){
-    let searchedYear   = Number(dateString.slice(6, 10));
-    let searchedMonth = Number((dateString.slice(3, 5)));
-    let searchedDay = Number(dateString.slice(0, 2));
-    
-    if(searchedDay ===1 ){
-      if(searchedMonth ===1 ){
-        searchedMonth = 12;
-        searchedYear = searchedYear -1;
-        searchedDay = getDaysInMonth(searchedMonth, searchedYear);
-      } else {
-        searchedMonth = searchedMonth -1;
-        searchedDay = getDaysInMonth(searchedMonth, searchedYear);
-      }
-    } else { 
-      searchedDay = searchedDay -1;
-    } 
-    searchedDay.toString().padStart(2, '0');
-    searchedMonth.toString().padStart(2, '0');
-
-    return new Date(searchedYear, searchedMonth-1, searchedDay);
+export function getDatePrevious (showDate){
+    const searchedDay = new Date(showDate.getTime());
+    searchedDay.setDate(searchedDay.getDate() -1);
+    return searchedDay;
   }
   
-  export function getDateAfter(dateString) {
-    let searchedYear   = Number(dateString.slice(6, 10));
-    let searchedMonth = Number((dateString.slice(3, 5)));
-    let searchedDay = Number(dateString.slice(0, 2));
-    
-    if(searchedDay === getDaysInMonth(searchedMonth+1, searchedYear) ){
-      if(searchedMonth ===12 ){
-        searchedMonth = 1;
-        searchedYear = searchedYear +1;
-        searchedDay = getDaysInMonth(searchedMonth, searchedYear);
-      } else {
-        searchedMonth = searchedMonth +1;
-        searchedDay = getDaysInMonth(searchedMonth, searchedYear);
-      }
-    } else { 
-      searchedDay = searchedDay +1;
-    } 
-    searchedDay.toString().padStart(2, '0');
-    searchedMonth.toString().padStart(2, '0');
+  export function getDateNext(showDate) {
+    const searchedDay = new Date(showDate);
+    searchedDay.setDate(searchedDay.getDate() +1);
+    return searchedDay;
+  }
 
-    return new Date(searchedYear, searchedMonth-1, searchedDay);
+  export function getDateStringPrevious(showDate){
+    const searchedDate = getDatePrevious(showDate);
+    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+
+  }
+  
+  export function getDateStringNext(showDate){
+    const searchedDate = getDateNext(showDate);
+    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+  }
+  export function getDateString(toDate){
+    return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
   }
