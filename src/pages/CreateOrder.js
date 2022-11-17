@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import NavBarNewOrder from "../components/NavBarNewOrder";
-import EditOrderForm from "../components/EditOrderForm";
+import CreateOrderForm from "../components/CreateOrderForm";
 import { getDateString } from "../utils/getDate";
 
 export default function CreateOrder({onHandleSubmit}){
@@ -25,7 +25,7 @@ export default function CreateOrder({onHandleSubmit}){
             <StyledHead>
                 <p>erstelle neuen Eintrag </p>
             </StyledHead> 
-            <EditOrderForm date={orderDate} onHandleSubmit={onHandleSubmit}/>
+            <CreateOrderForm date={orderDate} onHandleSubmit={onHandleSubmit}/>
             <NavBarNewOrder page={"new"}/>
         </>
     );
