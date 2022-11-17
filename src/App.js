@@ -82,8 +82,7 @@ function App() {
         />
         <Route
           path="viewOrder"
-          element={<ViewOrder 
-            entries={orderList}/>}
+          element={<ViewOrder />}
         />
         <Route
           path="editOrder/:id"
