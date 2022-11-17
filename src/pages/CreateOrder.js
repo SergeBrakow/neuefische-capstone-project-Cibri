@@ -1,5 +1,4 @@
-import { useNavigate, useParams} from "react-router-dom"; 
-import { useState } from "react";
+import { useParams } from "react-router-dom"; 
 import styled from "styled-components";
 
 import NavBarNewOrder from "../components/NavBarNewOrder";
@@ -7,8 +6,6 @@ import CreateOrderForm from "../components/CreateOrderForm";
 import { getDateString } from "../utils/getDate";
 
 export default function CreateOrder({onHandleSubmit}){
-    const navigate = useNavigate(); 
-
     let {dateString} = useParams();
     if(dateString === undefined || dateString.length !== 10) {
         dateString = getDateString(new Date());
@@ -17,15 +14,13 @@ export default function CreateOrder({onHandleSubmit}){
     const showDate = new Date(Number(dateString.slice(6, 10)),
                               (Number((dateString.slice(3, 5)-1))), 
                                 Number(dateString.slice(0, 2)));
-    
-    const [orderDate, setOrderDate] = useState(showDate);
 
     return(
         <>
             <StyledHead>
                 <p>erstelle neuen Eintrag </p>
             </StyledHead> 
-            <CreateOrderForm date={orderDate} onHandleSubmit={onHandleSubmit}/>
+            <CreateOrderForm date={showDate} onHandleSubmit={onHandleSubmit}/>
             <NavBarNewOrder page={"new"}/>
         </>
     );
