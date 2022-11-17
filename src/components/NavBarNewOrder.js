@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getDateString } from "../utils/getDate";
 import { deleteFromLocalStorage, fromLocalStorage } from "../utils/localStorage";
 
 
@@ -19,7 +20,7 @@ export default function NavBarNewOrder (prop){
                 <button onClick={()=> logout()}>{prop.user.name} logout</button>
               </NavBarElement>
               <NavBarElement>
-                <button onClick={()=> navigate("/new")}>neuer Eintrag</button>
+              <button onClick={()=> navigate(`/new/${getDateString(prop.date)}`)}>neuer Eintrag</button>
               </NavBarElement>   
           </StyledNavBar>
           : 

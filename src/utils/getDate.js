@@ -20,6 +20,11 @@ export default function getDate(value){
     }
 }
 
+export function getTimeNowString(){
+  const newDate = new Date();
+  return [newDate.getHours().toString().padStart(2, '0'), newDate.getMinutes().toString().padStart(2, '0')].join(":");
+}
+
 export function getDayNameLong(date) {
     const location = 'de-DE';
     return date.toLocaleDateString(location, {weekday: 'long'})

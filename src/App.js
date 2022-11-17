@@ -55,7 +55,7 @@ function App() {
             entries={orderList}/>}
         />
          <Route
-          path="new"
+          path="new/:dateString"
           element={<New />}
         />
         <Route

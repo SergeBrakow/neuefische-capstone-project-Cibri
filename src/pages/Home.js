@@ -87,7 +87,7 @@ export default function Home({user, entries}) {
           )
         }
       </StyledTimeLine>
-      <NavBarNewOrder user={user} page={"home"}/>
+      <NavBarNewOrder user={user} page={"home"} date={showDate}/>
     </div>
   );
 }
