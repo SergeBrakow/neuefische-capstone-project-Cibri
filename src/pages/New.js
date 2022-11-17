@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import { useNavigate} from "react-router-dom"; 
+import { useNavigate, useParams} from "react-router-dom"; 
 import NavBarNewOrder from "../components/NavBarNewOrder";
 
 
 export default function New(){
     const navigate = useNavigate(); 
+    let {dateString} = useParams();
     return(
         <>
         <NewEntry>
-            <button onClick={() => {navigate("/newOrder")}}>neuer Eintrag</button>
-            <button onClick={() => {navigate("/newCustomer")}}>neuer Kunde</button>
+            <button onClick={() => {navigate(`/createOrder/${dateString}`)}}>neuer Eintrag</button>
+            <button onClick={() => {navigate("/createCustomer")}}>neuer Kunde</button>
         </NewEntry>
         <NavBarNewOrder page={"new"}/>
         </>

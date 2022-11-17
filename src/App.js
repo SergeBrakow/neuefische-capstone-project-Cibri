@@ -7,10 +7,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import New from "./pages/New";
 import Customer from "./pages/Customer"
-import NewOrder from "./pages/NewOrder";
 import EditOrder from "./pages/EditOrder";
 import ViewOrder from "./pages/ViewOrder";
 import { toLocalStorage, fromLocalStorage } from "./utils/localStorage";
+import CreateOrder from "./pages/CreateOrder";
 
 
 
@@ -23,14 +23,14 @@ function App() {
     toLocalStorage("orderList", orderList);
   }, [orderList]);
 
-  function createOrder(newId, newName, newDate, newNote){
+  function addOrder(orderId, order_type, order_name, orderDateFull, note){
     setOrderList([
       {
-        id: newId,
-        name: newName,
-        date: newDate,
+        id: orderId,
+        name: order_name,
+        date: orderDateFull,
         owner: user.name,
-        note: newNote,
+        note: note,
       },
       ...orderList,
     ]);
@@ -55,13 +55,13 @@ function App() {
             entries={orderList}/>}
         />
          <Route
-          path="new"
+          path="new/:dateString"
           element={<New />}
         />
         <Route
-          path="newOrder"
-          element={<NewOrder 
-            onHandleSubmit={createOrder}/>}
+          path="createOrder/:dateString"
+          element={<CreateOrder
+            onHandleSubmit={addOrder}/>}
         />
         <Route
           path="viewOrder"
@@ -72,7 +72,7 @@ function App() {
           element={<EditOrder />}
         />
         <Route
-          path="newCustomer"
+          path="createCustomer"
           element={<Customer />}
         />
         <Route path="*" element={<ErrorPage />} />

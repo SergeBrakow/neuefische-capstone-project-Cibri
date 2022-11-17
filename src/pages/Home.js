@@ -16,7 +16,7 @@ export default function Home({user, entries}) {
 
   let {dateString} = useParams();
   if(dateString === undefined || dateString.length !== 10) {
-    dateString = [new Date().getDate(), (new Date().getMonth() +1), new Date().getFullYear()].join('.');
+    dateString = getDateString(new Date());
   }
 
   const showDate = new Date(Number(dateString.slice(6, 10)),
@@ -70,7 +70,7 @@ export default function Home({user, entries}) {
       <StyledTimeLine>
         {[...Array(25)] 
           .map((element, index) => ( 
-            <StyledEntry key={index}>
+            <StyledEntry key={index} id={index}>
               <StyledTimeText>{index.toString().padStart(2, '0')}:00</StyledTimeText>
                 <EntryRow>
                   {entriesToday
@@ -87,7 +87,7 @@ export default function Home({user, entries}) {
           )
         }
       </StyledTimeLine>
-      <NavBarNewOrder user={user} page={"home"}/>
+      <NavBarNewOrder user={user} page={"home"} date={showDate}/>
     </div>
   );
 }
@@ -135,7 +135,7 @@ export const HeadNavBarElement = styled.div`
 `
 
 export const StyledTimeLine = styled.div`
-  margin: 119px 0 49px 0; 
+  margin: 95px 0 49px 0; 
 `
 
 export const StyledEntry = styled.div`
