@@ -1,17 +1,30 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 
-import getDate from "../utils/getDate";
+import "react-datepicker/dist/react-datepicker.css";
+
+import { getDateNext, getDatePrevious, getDateString, getDateStringNext, getDateStringPrevious, getDayNameLong, getDayNameShort } from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
 import EntryCard from "../components/EntryCard";
 
 
 export default function Home({user, entries}) {
   const navigate = useNavigate(); 
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // sort the today entries 
-  const showDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
-  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === showDate);
+  let {dateString} = useParams();
+  if(dateString === undefined || dateString.length !== 10) {
+    dateString = [new Date().getDate(), (new Date().getMonth() +1), new Date().getFullYear()].join('.');
+  }
+
+  const showDate = new Date(Number(dateString.slice(6, 10)),
+                            (Number((dateString.slice(3, 5)-1))), 
+                              Number(dateString.slice(0, 2)));
+          
+                              
+  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === dateString);
 
 
 
@@ -21,18 +34,44 @@ export default function Home({user, entries}) {
         <button onClick={()=> navigate("/")}>Sorry, but you need to login first!</button>
         </>);
   }
-  
+
   return(
     <div> 
       <StyledHead>
-        <p>{getDate("dayName")}</p>
-        <p>{getDate("day")}</p>
+        <p>{getDayNameLong(showDate)}</p>
+          {showDatePicker ? (
+            <HeadNavBar>
+               <HeadNavBarMidleElement>
+                <DatePicker
+                  selected={showDate}
+                  onChange={(date) => {setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker); navigate(`/home/${getDateString(date)}`)}}
+                  dateFormat="dd.MM.yyyy"
+                />
+                </HeadNavBarMidleElement>
+                <HeadNavBarElement>
+                  <button onClick={() =>setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker)}>Abbrechen</button>
+                </HeadNavBarElement>
+              </HeadNavBar>
+            ) : (
+              <HeadNavBar>
+                <HeadNavBarElement>
+                  <button onClick={()=> navigate(`/home/${getDateStringPrevious(showDate)}`)}>{getDayNameShort(getDatePrevious(showDate))}</button>
+                </HeadNavBarElement>
+                <HeadNavBarMidleElement>
+                  <button onClick={() =>setShowDatePicker ((previousShowDatePicker) => !previousShowDatePicker)}>{dateString}</button>
+                </HeadNavBarMidleElement>
+                <HeadNavBarElement>
+                  <button onClick={()=> navigate(`/home/${getDateStringNext(showDate)}`)}>{getDayNameShort(getDateNext(showDate))}</button>
+                </HeadNavBarElement>
+              </HeadNavBar>
+            )
+          }
       </StyledHead>
       <StyledTimeLine>
         {[...Array(25)] 
           .map((element, index) => ( 
             <StyledEntry key={index}>
-              <StyledTimeText>{index <10 ? "0" + index : index}:00</StyledTimeText>
+              <StyledTimeText>{index.toString().padStart(2, '0')}:00</StyledTimeText>
                 <EntryRow>
                   {entriesToday
                     .map((entry) => entry.date.hour === index ? (
@@ -59,9 +98,40 @@ export const StyledHead = styled.div`
   background-color: white;
   position: fixed;
   width: 100%;
-  height: 120px;
+  height: 95px;
   top: 0;
   layer: 10; 
+`
+
+export const HeadNavBar =styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  height: 40px;
+  button{
+    background-color: white;
+    border: 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover  {
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+  }
+`
+
+export const HeadNavBarMidleElement = styled.div`
+  width: 100%;
+  display: grid;
+  width: 60%;
+  margin: 2px;
+`
+
+export const HeadNavBarElement = styled.div`
+  width: 100%;
+  display: grid;
+  width: 20%;
+  margin: 2px;
 `
 
 export const StyledTimeLine = styled.div`

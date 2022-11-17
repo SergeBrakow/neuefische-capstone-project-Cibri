@@ -16,7 +16,7 @@ export default function NewOrder({onHandleSubmit}){
         const formData = new FormData(event.target);
         const { order_name, order_time, note} = Object.fromEntries(formData);
 
-        const ordayDate = new Date().getFullYear() +":" + (new Date().getMonth() +1) +":"+ new Date().getDate();
+        const ordayDate = [new Date().getDate(), (new Date().getMonth() +1),  new Date().getFullYear()].join('.');
         const orderDateFull= {
             dateStamp: ordayDate,
             hour:   Number(order_time.slice(0, 2)),

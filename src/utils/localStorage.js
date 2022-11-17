@@ -32,7 +32,7 @@ export function fromLocalStorage(key){
         id: "b5db267b-3275-4a86-a9f4-e7f927d33ed01",
         name: "Termin",
         date : {
-          dateStamp: "2022:11:14",
+          dateStamp: "16.11.2022",
           hour: 10,
           minute: 30,
         },
@@ -44,7 +44,7 @@ export function fromLocalStorage(key){
         id: "8f76114b-c30c-411d-ad38-77ce69079eef1",
         name: "Termin",
         date : {
-          dateStamp: "2022:11:14",
+          dateStamp: "16.11.2022",
           hour: 10,
           minute: 45,
         },
