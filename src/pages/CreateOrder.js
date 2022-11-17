@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import NavBarNewOrder from "../components/NavBarNewOrder";
 import CreateOrderForm from "../components/CreateOrderForm";
-import { getDateString } from "../utils/getDate";
+import { getDateFromString, getDateString } from "../utils/getDate";
 
 export default function CreateOrder({onHandleSubmit}){
     let {dateString} = useParams();
@@ -11,9 +11,7 @@ export default function CreateOrder({onHandleSubmit}){
         dateString = getDateString(new Date());
     }
     
-    const showDate = new Date(Number(dateString.slice(6, 10)),
-                              (Number((dateString.slice(3, 5)-1))), 
-                                Number(dateString.slice(0, 2)));
+    const showDate = getDateFromString(dateString);
 
     return(
         <>

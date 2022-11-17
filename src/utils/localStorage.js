@@ -39,6 +39,7 @@ export function fromLocalStorage(key){
         owner: "user1",
         note: "clita kasd gubergren, no sea takimata",
         customer: "b5db267b-3275-4a86-a9f4-e7f927d233ed01",
+        type: "Eintrag",
       },
       {
         id: "8f76114b-c30c-411d-ad38-77ce69079eef1",
@@ -50,6 +51,7 @@ export function fromLocalStorage(key){
         },
         owner: "user1",
         note: "clita kasd gubergren, no sea takimata",
+        type: "Termin",
       },
     ];}
 

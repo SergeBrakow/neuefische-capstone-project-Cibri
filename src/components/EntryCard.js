@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getTimeAsString } from "../utils/getDate";
 
 export default function EntryCard({entry}){
     const [showNote, setShowNote] = useState();
@@ -11,10 +12,10 @@ export default function EntryCard({entry}){
             <div>
                 <CardSection>
                         <StyledPTitel>{entry.name}</StyledPTitel>
-                        <p>{entry.date.hour.toString().padStart(2, '0')}:{entry.date.minute.toString().padStart(2, '0')}</p>
+                        <p>{getTimeAsString(entry.date.hour, entry.date.minute)}</p>
                 </CardSection>
                 <ButtonContainer>
-                    <button onClick={()=> navigate("/viewOrder")}>view</button>
+                    <button onClick={()=> navigate(`/viewOrder/${entry.id}`)}>view</button>
                     <button onClick={()=> navigate(`/editOrder/${entry.id}`)}>edit</button>
                 </ButtonContainer>
             </div>

@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import { getDateNext, getDatePrevious, getDateString, getDateStringNext, getDateStringPrevious, getDayNameLong, getDayNameShort } from "../utils/getDate";
+import { getDateFromString, getDateNext, getDatePrevious, getDateString, getDateStringNext, getDateStringPrevious, getDayNameLong, getDayNameShort } from "../utils/getDate";
 import NavBarNewOrder from "../components/NavBarNewOrder";
 import EntryCard from "../components/EntryCard";
 
@@ -19,9 +19,7 @@ export default function Home({user, entries}) {
     dateString = getDateString(new Date());
   }
 
-  const showDate = new Date(Number(dateString.slice(6, 10)),
-                            (Number((dateString.slice(3, 5)-1))), 
-                              Number(dateString.slice(0, 2)));
+  const showDate = getDateFromString(dateString);
           
                               
   const entriesToday = entries.filter( (entry) => entry.date.dateString === dateString);
