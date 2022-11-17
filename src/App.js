@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import New from "./pages/New";
 import Customer from "./pages/Customer"
-import NewOrder from "./pages/NewOrder";
 import EditOrder from "./pages/EditOrder";
 import ViewOrder from "./pages/ViewOrder";
 import { toLocalStorage, fromLocalStorage } from "./utils/localStorage";
