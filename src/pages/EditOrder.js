@@ -2,6 +2,7 @@ import { useParams} from "react-router-dom";
 import styled from "styled-components";
 
 import NavBarNewOrder from "../components/NavBarNewOrder";
+import EditOrderForm from "../components/EditOrderForm";
 
 export default function CreateOrder({user, entries, onHandleSubmit}){
 
@@ -12,6 +13,7 @@ export default function CreateOrder({user, entries, onHandleSubmit}){
             <StyledHead>
                 <p>Eintrag bearbeiten</p>
             </StyledHead> 
+            <EditOrderForm order={order} onHandleSubmit={onHandleSubmit}/>
             <NavBarNewOrder page={"new"}/>
         </>
     );
