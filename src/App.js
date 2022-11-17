@@ -35,6 +35,22 @@ function App() {
       ...orderList,
     ]);
   }
+  
+  function editOrder(orderId, order_type, order_name, orderDateFull, note){
+    setOrderList(
+      orderList.map ((order) =>
+        order.id === orderId ? {
+          ...order,
+          type: order_type,
+          name: order_name,
+          date: orderDateFull,
+          owner: user.name,
+          note: note,
+        } : 
+          order
+      )
+    );
+  }
 
   return (
     <Routes>
@@ -68,8 +84,11 @@ function App() {
           element={<ViewOrder />}
         />
         <Route
-          path="editOrder"
-          element={<EditOrder />}
+          path="editOrder/:id"
+          element={<EditOrder 
+            user={user}
+            entries={orderList}
+            onHandleSubmit={editOrder}/>}
         />
         <Route
           path="createCustomer"
