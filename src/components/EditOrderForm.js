@@ -40,6 +40,7 @@ export default function EditOrderForm({onHandleSubmit, order}){
             <fieldset>
                 <label htmlFor="type">Typ:</label>
                 <select name="order_type" id="order_type" onChange={slotSet} required>
+                    <option value={order.type} hidden>{order.type}</option>
                     <option >Eingang</option>
                     <option >Termin</option>
                     <option >Deadline</option>
