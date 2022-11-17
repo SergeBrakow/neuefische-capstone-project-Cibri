@@ -24,7 +24,7 @@ export default function Home({user, entries}) {
                               Number(dateString.slice(0, 2)));
           
                               
-  const entriesToday = entries.filter( (entry) => entry.date.dateStamp === dateString);
+  const entriesToday = entries.filter( (entry) => entry.date.dateString === dateString);
 
 
 

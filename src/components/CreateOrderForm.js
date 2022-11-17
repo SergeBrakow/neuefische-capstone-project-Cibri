@@ -22,7 +22,7 @@ export default function EditOrderForm({date, onHandleSubmit}){
         const orderDateString = getDateString(orderDate);
         
         const orderDateFull= {
-            dateStamp: orderDateString,
+            dateString: orderDateString,
             hour:   Number(order_time.slice(0, 2)),
             minute: Number(order_time.slice(3, 5)),
         }
