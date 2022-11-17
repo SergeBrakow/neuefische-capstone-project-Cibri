@@ -35,32 +35,29 @@ export function getDayNameShort(date) {
     return date.toLocaleDateString(location, {weekday: 'short'})
 }
 
- function getDaysInMonth (month, year) {
-    return new Date(year, month, 0).getDate();
-  }
-
 export function getDatePrevious (showDate){
-    const searchedDay = new Date(showDate.getTime());
-    searchedDay.setDate(searchedDay.getDate() -1);
-    return searchedDay;
-  }
+  const searchedDay = new Date(showDate.getTime());
+  searchedDay.setDate(searchedDay.getDate() -1);
+  return searchedDay;
+}
   
-  export function getDateNext(showDate) {
-    const searchedDay = new Date(showDate);
-    searchedDay.setDate(searchedDay.getDate() +1);
-    return searchedDay;
-  }
+export function getDateNext(showDate) {
+  const searchedDay = new Date(showDate);
+  searchedDay.setDate(searchedDay.getDate() +1);
+  return searchedDay;
+}
 
-  export function getDateStringPrevious(showDate){
-    const searchedDate = getDatePrevious(showDate);
-    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+export function getDateStringPrevious(showDate){
+  const searchedDate = getDatePrevious(showDate);
+  return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
 
-  }
+}
   
-  export function getDateStringNext(showDate){
-    const searchedDate = getDateNext(showDate);
-    return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
-  }
-  export function getDateString(toDate){
-    return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
-  }
+export function getDateStringNext(showDate){
+  const searchedDate = getDateNext(showDate);
+  return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+}
+
+export function getDateString(toDate){
+  return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
+}
