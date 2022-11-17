@@ -16,7 +16,7 @@ export default function Home({user, entries}) {
 
   let {dateString} = useParams();
   if(dateString === undefined || dateString.length !== 10) {
-    dateString = [new Date().getDate(), (new Date().getMonth() +1), new Date().getFullYear()].join('.');
+    dateString = getDateString(new Date());
   }
 
   const showDate = new Date(Number(dateString.slice(6, 10)),

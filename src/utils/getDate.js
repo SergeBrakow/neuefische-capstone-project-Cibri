@@ -49,15 +49,21 @@ export function getDateNext(showDate) {
 
 export function getDateStringPrevious(showDate){
   const searchedDate = getDatePrevious(showDate);
-  return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
-
+  return (getDateString (searchedDate));
 }
   
 export function getDateStringNext(showDate){
   const searchedDate = getDateNext(showDate);
-  return [searchedDate.getDate().toString().padStart(2, '0'), (searchedDate.getMonth()+1).toString().padStart(2, '0'), searchedDate.getFullYear()].join('.');
+  return getDateString (searchedDate);
 }
 
-export function getDateString(toDate){
-  return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
+export function getDateString(toDate, location ="DE"){
+  const returnString = "";
+  // dd.MM.YYYY
+  if(location ==="DE"){
+    return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
+  } 
+
+  // YYYY.MM.dd
+  return  [toDate.getFullYear(), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getDate().toString().padStart(2, '0')].join('.');
 }
