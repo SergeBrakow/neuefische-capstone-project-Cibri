@@ -23,14 +23,14 @@ function App() {
     toLocalStorage("orderList", orderList);
   }, [orderList]);
 
-  function addOrder(newId, newName, newDate, newNote){
+  function addOrder(orderId, order_type, order_name, orderDateFull, note){
     setOrderList([
       {
-        id: newId,
-        name: newName,
-        date: newDate,
+        id: orderId,
+        name: order_name,
+        date: orderDateFull,
         owner: user.name,
-        note: newNote,
+        note: note,
       },
       ...orderList,
     ]);
