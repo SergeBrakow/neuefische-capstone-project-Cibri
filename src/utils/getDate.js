@@ -20,6 +20,10 @@ export default function getDate(value){
     }
 }
 
+export function getTimeAsString(hour, minute){
+  return [hour.toString().padStart(2, '0'), minute.toString().padStart(2, '0')].join(':');
+}
+
 export function getTimeNowString(){
   const newDate = new Date();
   return [newDate.getHours().toString().padStart(2, '0'), newDate.getMinutes().toString().padStart(2, '0')].join(":");
@@ -57,13 +61,18 @@ export function getDateStringNext(showDate){
   return getDateString (searchedDate);
 }
 
-export function getDateString(toDate, location ="DE"){
-  const returnString = "";
-  // dd.MM.YYYY
-  if(location ==="DE"){
+export function getDateString(toDate, format ="yyyy.mm.dd"){
+  if(format ==="yyyy.mm.dd"){
     return [toDate.getDate().toString().padStart(2, '0'), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getFullYear()].join('.');
   } 
-
   // YYYY.MM.dd
   return  [toDate.getFullYear(), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getDate().toString().padStart(2, '0')].join('.');
+}
+
+export function getDateFromString(dateString, format ="yyyy.mm.dd") {
+  if(format ==="yyyy.mm.dd"){
+    return new Date(Number(dateString.slice(6, 10)),
+                              (Number((dateString.slice(3, 5)-1))), 
+                                Number(dateString.slice(0, 2)));
+  } 
 }

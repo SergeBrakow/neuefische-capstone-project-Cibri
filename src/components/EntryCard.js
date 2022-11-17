@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 export default function EntryCard({entry}){
     const [showNote, setShowNote] = useState();
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function EntryCard({entry}){
                 </CardSection>
                 <ButtonContainer>
                     <button onClick={()=> navigate("/viewOrder")}>view</button>
-                    <button onClick={()=> navigate("/editOrder")}>edit</button>
+                    <button onClick={()=> navigate(`/editOrder/${entry.id}`)}>edit</button>
                 </ButtonContainer>
             </div>
                 {showNote && <NoteDiv>
