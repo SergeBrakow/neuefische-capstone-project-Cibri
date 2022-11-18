@@ -45,7 +45,7 @@ export const StyledCard = styled.article`
     } 
     button{
         margin: 5px;
-        width-min: 45px;
+        min-width: 45px;
         height: 25px;
         border: 1px solid;
         border-radius: 8px;
