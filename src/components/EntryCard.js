@@ -31,7 +31,7 @@ export default function EntryCard({entry}){
                             <p>{entry.owner}</p>
                         </div>
                     </NoteDiv>}
-            <button onClick={() =>setShowNote ((previousShowNote) => !previousShowNote)}>show</button>
+            <button onClick={() =>setShowNote ((previousShowNote) => !previousShowNote)}>Notizen</button>
         </StyledCard>
     );
 }
@@ -45,7 +45,7 @@ export const StyledCard = styled.article`
     } 
     button{
         margin: 5px;
-        width: 45px;
+        width-min: 45px;
         height: 25px;
         border: 1px solid;
         border-radius: 8px;
