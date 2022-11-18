@@ -20,7 +20,7 @@ export function fromLocalStorage(key){
 
 
   // example data for testing
-  if(storage === null && key==="usersList") {
+  if(storage === null && key==="userList") {
     storage = [
       { id: 1, name: "Peter", role:"user"}, 
       { id: 2, name: "Nicole", role: "admin"}
@@ -73,13 +73,13 @@ export function fromLocalStorage(key){
       contact_prson_note: "",
     },
     {
-      id: "b5db267b-3275-4a2d33ed01",
-      customer_name: "Neue Hasen GmbH",
-      adress_street: "WalterWeg 2",
-      adress_code: "44756",
-      adress_city: "Nordberg",
+      id: "b5db267b33ed01",
+      customer_name: "Alte Hasen AG",
+      adress_street: "Frankenweg 22",
+      adress_code: "44256",
+      adress_city: "Südberg",
       customer_note: "",
-      contact_prson_name: "Hr. White",
+      contact_prson_name: "Hr. Black",
       contact_prson_tel: "",
       contact_prson_email: "",
       contact_prson_note: "",
