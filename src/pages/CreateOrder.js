@@ -11,22 +11,25 @@ export default function CreateOrder({onHandleSubmit}){
         dateString = getDateString(new Date());
     }
     
-    const showDate = getDateFromString(dateString);
 
     return(
         <>
             <StyledHead>
                 <p>erstelle neuen Eintrag </p>
             </StyledHead> 
-            <CreateOrderForm date={showDate} onHandleSubmit={onHandleSubmit}/>
-            <NavBarNewOrder page={"new"}/>
+            <CreateOrderForm date={getDateFromString(dateString)} onHandleSubmit={onHandleSubmit}/>
+            <NavBarNewOrder page={"new"} date={dateString}/>
         </>
     );
 }
 
 export const StyledHead = styled.div`
     border-bottom: 1px solid;
+    background-color: white;
+    position: fixed;
     width: 100%;
     height: 70px;
-    margin-bottom: 10px; 
+    top: 0;
+    layer: 10; 
+    margin-bottom: 10px;  
 `

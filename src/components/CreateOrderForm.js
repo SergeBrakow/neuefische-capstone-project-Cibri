@@ -83,6 +83,7 @@ const Section = styled.section`
     display: flex;
     justify-content: center;
     margin: auto;
+    margin-top: 80px;
     margin-bottom: 60px;
     text-align: left;
     fieldset {
