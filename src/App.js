@@ -38,19 +38,27 @@ function App() {
   }
 
   function editOrder(orderId, order_type, order_name, orderDateFull, note){
-    setOrderList(
-      orderList.map ((order) =>
-        order.id === orderId ? {
-          ...order,
-          type: order_type,
-          name: order_name,
-          date: orderDateFull,
-          owner: user.name,
-          note: note,
-        } : 
-          order
-      )
-    );
+    if(order_name === "") {
+      deleteOrder(orderId);
+    } else {
+      setOrderList(
+        orderList.map ((order) =>
+          order.id === orderId ? {
+            ...order,
+            type: order_type,
+            name: order_name,
+            date: orderDateFull,
+            owner: user.name,
+            note: note,
+          } : 
+            order
+        )
+      );
+    }
+  }
+
+  function deleteOrder(id){
+    setOrderList(orderList.filter((order) => order.id !== id));
   }
 
   return (

@@ -30,10 +30,16 @@ export default function EditOrderForm({onHandleSubmit, order}){
         navigate(`/home/${getDateString(orderDate)}`);
    }
 
-    function slotSet(e){
-        setOrderType(e.target.value);
+    function deleteOrder(event){
+        event.preventDefault(); 
+        onHandleSubmit(orderId, "", "", "", "");
+        navigate(`/home/${getDateString(orderDate)}`);
     }
 
+    function slotSet(event){
+        setOrderType(event.target.value);
+    }
+    
     return (
         <Section>
         <form onSubmit={submitOrder}>
@@ -74,10 +80,11 @@ export default function EditOrderForm({onHandleSubmit, order}){
                     name="note"
                     id="note"
                     rows="7"
-                    maxLength="150"
+                    maxLength="250"
                     defaultValue={order.note}
                 ></textarea>
-                <button type="submit">Speichern</button>
+                <SaveBtn type="submit">speichern</SaveBtn>
+                <DeleteBtn onClick={(e)=>deleteOrder(e)}>löschen</DeleteBtn>
                 </fieldset>
             </form>
     </Section>
@@ -97,9 +104,13 @@ const Section = styled.section`
         
         width: 300px;
         gap: 10px;
-        button {
-            height: 40px;
-            margin-top: 70px;
-        }
-    }
 `;
+const SaveBtn = styled.button`
+    height: 40px;
+    margin-top: 70px;
+`
+
+const DeleteBtn = styled.button`
+    margin-top: 20px; 
+    height: 40px;
+`
