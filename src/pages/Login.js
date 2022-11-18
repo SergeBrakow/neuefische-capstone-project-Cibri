@@ -6,7 +6,7 @@ export default function Login({setUser}) {
   const navigate = useNavigate();
 
   function loginAs(loginName){
-    const userList = fromLocalStorage("users");
+    const userList = fromLocalStorage("userList");
     let user = userList.find((item) =>{return item.name === loginName});
     
     if(user === undefined) { 
@@ -27,8 +27,8 @@ export default function Login({setUser}) {
       </StyledWelcomeName>
       <StyledSection>
         <h2>login as</h2>
-        <button onClick={()=> { loginAs("User1") }}>user</button>
-        <button onClick={()=> { loginAs("Admin1") }}>admin</button>
+        <button onClick={()=> { loginAs("Peter") }}>Peter</button>
+        <button onClick={()=> { loginAs("Nicole Schmidt") }}>Nicole Schmidt</button>
       </StyledSection>
     </>
   );

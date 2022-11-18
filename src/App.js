@@ -16,11 +16,20 @@ import CreateOrder from "./pages/CreateOrder";
 
 function App() {
   const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
+  const [customerList, setCustomerList] = useState(fromLocalStorage("customerList"));
   const [user, setUser] = useState(fromLocalStorage("loggedUser"));
   document.title = "Cibri";
   
   useEffect(() => {
     toLocalStorage("orderList", orderList);
+  }, [orderList]);
+
+  useEffect(() => {
+    toLocalStorage("customerList", customerList);
+  }, [orderList]);
+
+  useEffect(() => {
+    toLocalStorage("userList", userList);
   }, [orderList]);
 
   function addOrder(orderId, order_type, order_name, orderDateFull, note){
@@ -102,7 +111,10 @@ function App() {
         />
         <Route
           path="createCustomer"
-          element={<Customer />}
+          element={<Customer
+            customerList={customerList}
+            setCustomerList={setCustomerList}
+            action={"create"} />}
         />
         <Route path="*" element={<ErrorPage />} />
       </Route>
