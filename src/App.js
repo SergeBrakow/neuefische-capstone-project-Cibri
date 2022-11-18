@@ -17,6 +17,7 @@ import CreateOrder from "./pages/CreateOrder";
 function App() {
   const [orderList, setOrderList] = useState(fromLocalStorage("orderList"));
   const [customerList, setCustomerList] = useState(fromLocalStorage("customerList"));
+  const [userList, setUserList] = useState(fromLocalStorage("userList"));
   const [user, setUser] = useState(fromLocalStorage("loggedUser"));
   document.title = "Cibri";
   
