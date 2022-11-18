@@ -23,7 +23,7 @@ export function fromLocalStorage(key){
   if(storage === null && key==="userList") {
     storage = [
       { id: 1, name: "Peter", role:"user"}, 
-      { id: 2, name: "Nicole", role: "admin"}
+      { id: 2, name: "Nicole Schmidt", role: "admin"}
     ];
   }
       
