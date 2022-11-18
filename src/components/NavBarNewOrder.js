@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getDateString } from "../utils/getDate";
-import { deleteFromLocalStorage, fromLocalStorage } from "../utils/localStorage";
+import { deleteFromLocalStorage } from "../utils/localStorage";
 
 
 export default function NavBarNewOrder (prop){
@@ -26,7 +26,7 @@ export default function NavBarNewOrder (prop){
           : 
           <StyledNavBar>   
             <NavBarElement>
-              <button onClick={()=> navigate("/home")}>zurück</button>
+              <button onClick={()=> navigate(`/home/${prop.dateString}`)}>zurück</button>
             </NavBarElement>
           </StyledNavBar>
         }

@@ -81,8 +81,9 @@ function App() {
             onHandleSubmit={addOrder}/>}
         />
         <Route
-          path="viewOrder"
-          element={<ViewOrder />}
+          path="viewOrder/:id"
+          element={<ViewOrder 
+            entries={orderList}/>}
         />
         <Route
           path="editOrder/:id"

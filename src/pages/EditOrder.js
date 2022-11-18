@@ -4,7 +4,7 @@ import styled from "styled-components";
 import NavBarNewOrder from "../components/NavBarNewOrder";
 import EditOrderForm from "../components/EditOrderForm";
 
-export default function CreateOrder({user, entries, onHandleSubmit}){
+export default function EditOrder({entries, onHandleSubmit}){
 
     let {id} = useParams();
     const order = entries.find( (entry) => entry.id === id);
@@ -14,14 +14,18 @@ export default function CreateOrder({user, entries, onHandleSubmit}){
                 <p>Eintrag bearbeiten</p>
             </StyledHead> 
             <EditOrderForm order={order} onHandleSubmit={onHandleSubmit}/>
-            <NavBarNewOrder page={"new"}/>
+            <NavBarNewOrder page={"new"} dateString={order.date.dateString}/>
         </>
     );
 }
 
 export const StyledHead = styled.div`
-    border-bottom: 1px solid;
-    width: 100%;
-    height: 70px;
-    margin-bottom: 10px; 
+  border-bottom: 1px solid;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  layer: 10; 
+  margin-bottom: 10px; 
 `
