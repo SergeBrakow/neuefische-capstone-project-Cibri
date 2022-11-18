@@ -21,7 +21,7 @@ export default function CreateCustomer({customerList, setCustomerList, action}){
             contact_prson_note: newContact_prson_note,
           },
           ...customerList,
-        ]);
+        ])
       }
 
     return(
@@ -37,7 +37,7 @@ export default function CreateCustomer({customerList, setCustomerList, action}){
             }
             <NavBarNewOrder page={"new"}/>
         </>
-    );
+    )
 }
 
 export const StyledHead = styled.div`
