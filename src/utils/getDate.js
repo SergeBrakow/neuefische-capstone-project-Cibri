@@ -48,8 +48,9 @@ export function getDateString(toDate, format ="yyyy.mm.dd"){
   return  [toDate.getFullYear(), (toDate.getMonth()+1).toString().padStart(2, '0'), toDate.getDate().toString().padStart(2, '0')].join('.');
 }
 
-export function getDateFromString(dateString, format ="yyyy.mm.dd") {
-  if(format ==="yyyy.mm.dd"){
+export function getDateFromString(dateString, format ="dd.mm.yyyy") {
+  // input from url is german (dd.mm.yyyy) but for date it need to be englisch (yyyy.mm.dd)
+  if(format ==="dd.mm.yyyy"){
     return new Date(Number(dateString.slice(6, 10)),
                               (Number((dateString.slice(3, 5)-1))), 
                                 Number(dateString.slice(0, 2)));
