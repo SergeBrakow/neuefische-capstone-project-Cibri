@@ -32,6 +32,9 @@ export default function NavBarFooter (prop){
               <NavBarElement>
                 <button onClick={() => navigate(-1)}>zurück</button>
               </NavBarElement>
+              <NavBarElement>
+                <button onClick={() => navigate(`/home/`)}>Home</button>
+              </NavBarElement>
             </StyledNavBar>
           )
         }
