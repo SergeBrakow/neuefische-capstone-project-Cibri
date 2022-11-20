@@ -26,32 +26,35 @@ export default function Login() {
   window.scrollTo(0, 0);
   return(
     <div>
-        <StyledWelcomeName>
-            <h1>Cibri</h1>
-            <p>your service app</p>
-          </StyledWelcomeName>
-
+      <StyledWelcomeName>
+          <h1>Cibri</h1>
+          <p>your service app</p>
+        </StyledWelcomeName>
+        
       <LoginDiv>
-              <form onSubmit={loginAs}>
-                  <fieldset>
-                      <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          placeholder="Name"
-                          required
-                      ></input>
-                        <input
-                          type="password"
-                          name="password"
-                          id="password"
-                          placeholder="******"
-                      ></input>
-                      <button type="submit">Login</button>
-                    </fieldset>
-                  </form>
-          </LoginDiv>
-      </div>
+        <form onSubmit={loginAs}>
+            <fieldset>
+              <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  required
+              ></input>
+              <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="******"
+              ></input>
+              <button type="submit">Login</button>
+            </fieldset>
+        </form>
+      </LoginDiv>
+      <FooterDiv>
+        <p>a neue Fische Capstone project by S.B. </p>
+      </FooterDiv>
+    </div>
   );
 }
 
@@ -94,5 +97,24 @@ export const LoginDiv = styled.section`
     border-radius: 5px;
     width: 70px;
     height: 30px;
+    background-color: #f4f9f4;
+    &: hover {
+      background-color: white;
+      border: none;
+      -webkit-box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.38); 
+      box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.38);; 
+    }
+  }
+`
+const FooterDiv = styled.div`
+  background-color: #74b49b ; 
+  border-bottom: solid;
+  border-bottom-color: gray;
+  border-radius: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 10px;
+  p{
+    font-size: small;
   }
 `
