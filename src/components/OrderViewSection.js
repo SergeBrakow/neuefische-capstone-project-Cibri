@@ -39,7 +39,7 @@ export default function OrderViewSection({customerList, userList, order}){
                     ) : (
                         order.linkedCustomer.map((linkedCustomerId) => 
                             <ABtn key={linkedCustomerId}
-                                onClick={() =>{ navigate(`/userView/${linkedCustomerId}`)}}
+                                onClick={() =>{ navigate(`/customerView/${linkedCustomerId}`)}}
                                 >{customerList.find((customer) => customer.id === linkedCustomerId).customer_name}</ABtn>
                         )
                     )

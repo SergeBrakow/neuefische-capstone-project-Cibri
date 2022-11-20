@@ -99,7 +99,7 @@ function App() {
               element={<UserLinkedOrderView/>}
           />
           <Route
-            path="customerView"
+            path="customerView/:id"
             element={<Customer action={"view"}/>}
           />
           <Route
