@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { LeftUserBtn, LinkedUserBtn, SaveBtn, Section, ShowUserLeftBtn } from "./styles/OrderFormStyles";
 
 
-export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
+export default function OrderCreateForm({userList, customerList, date, time, onHandleSubmit}){
     const navigate = useNavigate(); 
     // for time and date setting
     const [orderType, setOrderType] = useState("Eintrag");
@@ -20,8 +20,11 @@ export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
     const [leftUserList, setLeftUserList] = useState(userList); // user objects
     const [showUserLeft, setShowUserLeft ] = useState(false);
 
-    // for fixing the view
-    const [goToElementId, setGoToElementId] = useState(0);
+    // for linking customers
+    const [linkedCustomerList, setLinkedCustomerList] = useState([]);   // user objects
+    const [leftCustomerList, setLeftCustomerList] = useState(customerList); // user objects
+    const [showCustomerLeft, setShowCustomerLeft ] = useState(false);
+    
 
     const orderId= nanoid();
 
@@ -36,9 +39,11 @@ export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
             hour:   Number(order_time.slice(0, 2)),
             minute: Number(order_time.slice(3, 5)),
         }
-        const linkedUSerIdList =[];
-        linkedUserList.forEach((user) => linkedUSerIdList.push(user.id));
-        onHandleSubmit(orderId, orderType, order_titel, orderDateFull, note, linkedUSerIdList);
+        const linkedUserIdList = [];
+        const linkedCustomerIdList = [];
+        linkedUserList.forEach((user) => linkedUserIdList.push(user.id));
+        linkedCustomerList.forEach((customer) => linkedCustomerIdList.push(customer.id));
+        onHandleSubmit(orderId, orderType, order_titel, orderDateFull, note, linkedUserIdList, linkedCustomerIdList);
         navigate(`/home/${getDateString(orderDate)}`);
    }
 
@@ -57,7 +62,6 @@ export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
         const selectedUserId = event.target.value;
         setLinkedUserList([ leftUserList.find((user) => user.id === selectedUserId), ...linkedUserList])
         setLeftUserList(leftUserList.filter((user) => user.id !== selectedUserId));
-        setGoToElementId(1);
     }
     
     function unLinkUser(event) {
@@ -65,7 +69,28 @@ export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
         const selectedUserId = event.target.value;
         setLeftUserList([linkedUserList.find((user) => user.id === selectedUserId), ...leftUserList]);
         setLinkedUserList(linkedUserList.filter((user) => user.id !== selectedUserId));
-        setGoToElementId(1);
+    }
+
+    // for link / unlink Customer
+    function openCustomerLeftList(event){
+        event.preventDefault();
+        setShowCustomerLeft((previous) => !previous);
+    }
+
+    function linkCustomer(event) {
+        event.preventDefault();
+        const selectedCustomerId = event.target.value;
+        setLinkedCustomerList([ leftCustomerList.find((Customer) => Customer.id === selectedCustomerId), ...linkedCustomerList])
+        setLeftCustomerList(leftCustomerList.filter((Customer) => Customer.id !== selectedCustomerId));
+
+    }
+    
+    function unLinkCustomer(event) {
+        event.preventDefault();
+        const selectedCustomerId = event.target.value;
+        setLeftCustomerList([linkedCustomerList.find((Customer) => Customer.id === selectedCustomerId), ...leftCustomerList]);
+        setLinkedCustomerList(linkedCustomerList.filter((Customer) => Customer.id !== selectedCustomerId));
+
     }
     
     return (
@@ -111,64 +136,29 @@ export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
                 <fieldset>
                     {linkedUserList.map((user) => 
                         <LinkedUserBtn key={user.id} value={user.id} onClick={(e) => unLinkUser(e) }>{user.name}</LinkedUserBtn>
-                    )}
+                        )}
                     <ShowUserLeftBtn id={1} onClick={(e)=>openUserLeftList(e)}>{showUserLeft? "blende weite Nutzer aus" : "zeige weitere Nutzer an"}</ShowUserLeftBtn>
                     {showUserLeft? (
                         leftUserList.map((user) => 
-                            <LeftUserBtn key={user.id} value={user.id} onClick={(e) => linkUser(e) }>{user.name}</LeftUserBtn>)
+                        <LeftUserBtn key={user.id} value={user.id} onClick={(e) => linkUser(e) }>{user.name}</LeftUserBtn>)
                         ):""
                     }
                 </fieldset>   
-                {/* <fieldset>
-                    {linkedUserList.map((user) => 
-                        <LinkedUserBtn key={user.id} value={user.id} onClick={(e) => unLinkUser(e) }>{user.name}</LinkedUserBtn>
+                <label>Kunden markieren</label>
+                <fieldset>
+                    {linkedCustomerList.map((Customer) => 
+                        <LinkedUserBtn key={Customer.id} value={Customer.id} onClick={(e) => unLinkCustomer(e) }>{Customer.customer_name}</LinkedUserBtn>
                     )}
-                    <button onClick={(e)=>openUserLeftList(e)}>{showUserLeft? "blende weite Nutzer aus" : "zeige weitere Nutzer an"}</button>
-                    {showUserLeft? (
-                        leftUserList.map((user) => 
-                            <LeftUserBtn key={user.id} value={user.id} onClick={(e) => linkUser(e) }>{user.name}</LeftUserBtn>)
+                    <ShowUserLeftBtn id={1} onClick={(e)=>openCustomerLeftList(e)}>{showCustomerLeft? "blende weite Kunden aus" : "zeige weitere Kunden an"}</ShowUserLeftBtn>
+                    {showCustomerLeft? (
+                        leftCustomerList.map((Customer) => 
+                            <LeftUserBtn key={Customer.id} value={Customer.id} onClick={(e) => linkCustomer(e) }>{Customer.customer_name}</LeftUserBtn>)
                         ):""
                     }
-                </fieldset>   */}
+                </fieldset> 
                 <SaveBtn type="submit">Speichern</SaveBtn>
             </fieldset>
         </form>
     </Section>
     );
 }
-
-// const Section = styled.section`
-//     display: flex;
-//     justify-content: center;
-//     margin: auto;
-//     margin-top: 80px;
-//     margin-bottom: 60px;
-//     text-align: left;
-//     fieldset {
-//         display: flex;
-//         flex-direction: column;
-        
-//         width: 300px;
-//         gap: 10px;
-//         button {
-//             height: 40px;
-//             margin-top: 70px;
-//         }
-//     }
-// `
-// const LinkedUserBtn=styled.button`
-//     background-color: white;
-//     border: none;
-//     &:hover {
-//         background-color: #cc0000;
-//         outline: none;
-//     }
-// `
-// const LeftUserBtn=styled.button`
-//     background-color: white;
-//     border: none;
-//     &:hover {
-//         background-color: #009933;
-//         outline: none;
-//     }
-// `

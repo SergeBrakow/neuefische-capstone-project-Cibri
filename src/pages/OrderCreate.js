@@ -20,9 +20,9 @@ export default function OrderCreate(){
       dateString = getDateString(new Date());
     } 
 
-    const { user, userList, orderList, setOrderList } = useContext(UserContext);
+    const { user, userList, customerList, orderList, setOrderList } = useContext(UserContext);
 
-    function addOrder(orderId, order_type, order_name, orderDateFull, note, linkedUSerIdList){
+    function addOrder(orderId, order_type, order_name, orderDateFull, note, linkedUSerIdList, linkedCustomerIdList){
     setOrderList([
       {
         id: orderId,
@@ -32,6 +32,7 @@ export default function OrderCreate(){
         owner: user.name,
         note: note,
         linkedUser: linkedUSerIdList,
+        linkedCustomer: linkedCustomerIdList,
       },
       ...orderList,
     ]);
@@ -44,6 +45,7 @@ export default function OrderCreate(){
             </StyledHead> 
             <CreateOrderForm 
                 userList={userList}
+                customerList={customerList}
                 date={getDateFromString(dateString)} 
                 time={createAtTime}
                 onHandleSubmit={addOrder}/>
