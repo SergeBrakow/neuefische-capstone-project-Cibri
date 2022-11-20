@@ -21,6 +21,15 @@ export const Section = styled.section`
         background-color: #f4f9f4; 
         width: 300px;
         gap: 10px;
+        /* Chrome, Safari, Edge, Opera */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+        } 
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+          }
     }
 `
 export const SaveBtn = styled.button`
