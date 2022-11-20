@@ -62,12 +62,12 @@ function App() {
           <Route index 
             element={<Login />}
           />
+            <Route
+              path="home"
+              element={<Home/>}
+            />
           <Route
             path="home/:dateString"
-            element={<Home/>}
-          />
-          <Route
-            path="home"
             element={<Home/>}
           />
           <Route
@@ -99,11 +99,12 @@ function App() {
               element={<UserLinkedOrderView/>}
           />
           <Route
-            path="createCustomer"
-            element={<Customer
-              customerList={customerList}
-              setCustomerList={setCustomerList}
-              action={"create"} />}
+            path="customerView"
+            element={<Customer action={"view"}/>}
+          />
+          <Route
+            path="customerCreate"
+            element={<Customer action={"create"} />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Route>
