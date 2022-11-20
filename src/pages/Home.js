@@ -31,12 +31,11 @@ export default function Home() {
 
   const { pathname } = useLocation();
   useEffect(() => {
-      
       setTimeout(() => {
         let lowestNumber = 24;
         if(idPosInHome === 0) {
           entriesToday.forEach(element => {
-            if(element.date.hour <lowestNumber) lowestNumber =element.date.hour;
+            if(element.date.hour <lowestNumber) lowestNumber = element.date.hour;
           });
           // the fisrt 2 entries can be hidden behind the head bar
           if(lowestNumber === 24){
@@ -46,8 +45,8 @@ export default function Home() {
           }
         } else {
           lowestNumber = idPosInHome-2;
-          if(lowestNumber <0) {lowestNumber = 0}
         }
+        if(lowestNumber <0) {lowestNumber = 0}
         const element = document.getElementById(lowestNumber);
         element.scrollIntoView({ behavior: 'smooth' });
       }, 100);
