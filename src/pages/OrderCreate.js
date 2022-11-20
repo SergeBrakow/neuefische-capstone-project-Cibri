@@ -11,7 +11,7 @@ export default function OrderCreate(){
     // zeit und datum aus der url (11.11.2022-2) 
     let {dateString} = useParams();
     let createAtTime = new Date().getHours();
-    if(dateString !== undefined || dateString >10) {
+    if(dateString !== undefined && dateString.length >10) {
       const tempNumber = Number(dateString.slice(11, dateString.length));
       if(tempNumber >=0 || tempNumber<24) { createAtTime = tempNumber; }
       dateString = dateString.slice(0, 10);
