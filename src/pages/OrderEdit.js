@@ -7,12 +7,12 @@ import { StyledHead } from "../components/styles/StyledHead";
 import { UserContext } from "../utils/UserContext";
 
 export default function OrderEdit(){
-    const { user, userList, orderList, setOrderList, setIdPosInHome } = useContext(UserContext);
+    const { user, userList, customerList, orderList, setOrderList, setIdPosInHome } = useContext(UserContext);
 
     let {id} = useParams();
     const order = orderList.find( (order) => order.id === id);
 
-    function editOrder(orderId, order_type, order_name, orderDateFull, note, linkedUSerIdList){
+    function editOrder(orderId, order_type, order_name, orderDateFull, note, linkedUserIdList, linkedCustomerIdList){
         setIdPosInHome(order.date.hour);
         if(order_name === "") {
             deleteOrder(orderId);
@@ -26,7 +26,8 @@ export default function OrderEdit(){
                 date: orderDateFull,
                 owner: user.name,
                 note: note,
-                linkedUser: linkedUSerIdList,
+                linkedUser: linkedUserIdList,
+                linkedCustomer: linkedCustomerIdList,
                 } : 
                 order
             )
@@ -48,6 +49,7 @@ export default function OrderEdit(){
                 order={order} 
                 userList={userList}
                 setIdPosInHome={setIdPosInHome}
+                customerList={customerList}
                 onHandleSubmit={editOrder}/>
             <NavBarNewOrder page={"new"} dateString={order.date.dateString}/>
         </div>

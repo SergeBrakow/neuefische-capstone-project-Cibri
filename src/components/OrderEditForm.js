@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DeleteBtn, LeftUserBtn, LinkedUserBtn, SaveBtn, Section, ShowUserLeftBtn } from "./styles/OrderFormStyles";
 
 
-export default function OrderEditForm({onHandleSubmit, order, userList, setIdPosInHome}){
+export default function OrderEditForm({onHandleSubmit, order, userList, customerList, setIdPosInHome}){
     const navigate = useNavigate(); 
     // for time and date setting
     const [orderType, setOrderType] = useState(order.type);
@@ -20,6 +20,11 @@ export default function OrderEditForm({onHandleSubmit, order, userList, setIdPos
     const [linkedUserList, setLinkedUserList] = useState([]);   // user ids
     const [leftUserList, setLeftUserList] = useState([]); // user objects
     const [showUserLeft, setShowUserLeft ] = useState(false);
+
+    // for linking customers
+    const [linkedCustomerList, setLinkedCustomerList] = useState([]);   // user objects
+    const [leftCustomerList, setLeftCustomerList] = useState(customerList); // user objects
+    const [showCustomerLeft, setShowCustomerLeft ] = useState(false);
     
     // hollt verbliebene user (die nicht gelinked sind) aus der user liste in die leftUserList
     useEffect(() => {
@@ -32,6 +37,17 @@ export default function OrderEditForm({onHandleSubmit, order, userList, setIdPos
             }
         })
         setLeftUserList(fullUserList)
+
+        let fullCustomerList = customerList;
+        order.linkedCustomer.forEach(id => {
+            if(linkedCustomerList.find((customer) => customer.id === id)) {
+                fullCustomerList = fullCustomerList.filter((customer) => customer.id !== id)
+            } else {
+                linkedCustomerList.push(customerList.find((customer) => customer.id === id));
+            }
+        })
+        setLeftCustomerList(fullCustomerList)
+
     },[]);
 
     const orderId= order.id;
@@ -48,8 +64,10 @@ export default function OrderEditForm({onHandleSubmit, order, userList, setIdPos
             minute: Number(order_time.slice(3, 5)),
         }
         const linkedUSerIdList =[];
+        const linkedCustomerIdList = [];
         linkedUserList.forEach((user) => linkedUSerIdList.push(user.id));
-        onHandleSubmit(orderId, orderType, order_titel, orderDateFull, note, linkedUSerIdList);
+        linkedCustomerList.forEach((customer) => linkedCustomerIdList.push(customer.id));
+        onHandleSubmit(orderId, orderType, order_titel, orderDateFull, note, linkedUSerIdList, linkedCustomerIdList);
         setIdPosInHome(orderDateFull.hour)
         navigate(`/home/${getDateString(orderDate)}`);
    }
@@ -84,6 +102,27 @@ export default function OrderEditForm({onHandleSubmit, order, userList, setIdPos
         setLinkedUserList(linkedUserList.filter((user) => user.id !== selectedUserId));
     }
 
+    // for link / unlink Customer
+    function openCustomerLeftList(event){
+        event.preventDefault();
+        setShowCustomerLeft((previous) => !previous);
+    }
+
+    function linkCustomer(event) {
+        event.preventDefault();
+        const selectedCustomerId = event.target.value;
+        setLinkedCustomerList([ leftCustomerList.find((Customer) => Customer.id === selectedCustomerId), ...linkedCustomerList])
+        setLeftCustomerList(leftCustomerList.filter((Customer) => Customer.id !== selectedCustomerId));
+
+    }
+    
+    function unLinkCustomer(event) {
+        event.preventDefault();
+        const selectedCustomerId = event.target.value;
+        setLeftCustomerList([linkedCustomerList.find((Customer) => Customer.id === selectedCustomerId), ...leftCustomerList]);
+        setLinkedCustomerList(linkedCustomerList.filter((Customer) => Customer.id !== selectedCustomerId));
+
+    }
    
     return (
         <Section>
@@ -138,6 +177,18 @@ export default function OrderEditForm({onHandleSubmit, order, userList, setIdPos
                     {showUserLeft? (
                         leftUserList.map((user) => 
                             <LeftUserBtn key={user.id} value={user.id} onClick={(e) => linkUser(e) }>{user.name}</LeftUserBtn>)
+                        ):""
+                    }
+                </fieldset>
+                <label>Kunden markieren:</label>
+                <fieldset>
+                    {linkedCustomerList.map((customer) => 
+                        <LinkedUserBtn key={customer.id} value={customer.id} onClick={(e) => unLinkCustomer(e) }>{customer.customer_name}</LinkedUserBtn>
+                    )}
+                    <ShowUserLeftBtn onClick={(e)=>openCustomerLeftList(e)}>{showCustomerLeft? "blende weite Kunden aus" : "zeige weitere Kunden an"}</ShowUserLeftBtn>
+                    {showCustomerLeft? (
+                        leftCustomerList.map((customer) => 
+                            <LeftUserBtn key={customer.id} value={customer.id} onClick={(e) => linkCustomer(e) }>{customer.customer_name}</LeftUserBtn>)
                         ):""
                     }
                 </fieldset>
