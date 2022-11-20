@@ -9,6 +9,8 @@ export const Section = styled.section`
     text-align: left;
     
     fieldset {
+        margin-left: 10px;
+        margin-right: 10px;
         display: flex;
         flex-direction: column;
         border: 0.5px solid;

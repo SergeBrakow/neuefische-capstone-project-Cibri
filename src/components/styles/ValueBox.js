@@ -5,6 +5,7 @@ export const ValueBox=styled.div`
     padding: 5px 10px 10px 10px;
     min-height: 30px;
     border-radius: 15px;
+    background-color: #ececed;
     p{
         margin: 2px;;
     }

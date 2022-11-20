@@ -4,7 +4,7 @@ export const MainBox= styled.article`
     border: 0.5px solid;
     border-radius: 10px;
     border-color: gray;
-    margin: 80px 10px 60px 10px;
+    margin: 80px 15px 60px 15px;
     padding: 10px;
     border-bottom: solid;
     border-color: #74b49b;
