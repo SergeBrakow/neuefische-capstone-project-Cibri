@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import { useContext } from "react";
+import { UserContext } from "../utils/UserContext";
+import CreateCustomerForm from "../components/CustomerCreateForm";
+import NavBarNewOrder from "../components/NavBarFooter";
+import { StyledHead } from "../components/styles/StyledHead";
 
-import CreateCustomerForm from "../components/CreateCustomerForm";
-import NavBarNewOrder from "../components/NavBarNewOrder";
+export default function CreateCustomer({ action }){
 
-export default function CreateCustomer({customerList, setCustomerList, action}){
+  const { customerList, setCustomerList } = useContext(UserContext);
 
     function addCustomer(newCustomerId, newCustomer_name, newCustomer_street, newCustomer_code, newCustomer_city, newCustomer_note, 
                             newContact_prson_name, newContact_prson_tel, newContact_prson_email, newContact_prson_note){
@@ -26,11 +29,13 @@ export default function CreateCustomer({customerList, setCustomerList, action}){
 
     return(
         <>
-            <StyledHead>
-                <p>erstelle neuen Kunden</p>
-            </StyledHead> 
             {action  === "create" ? (
+                <>
+                <StyledHead>
+                    <p>erstelle neuen Kunden</p>
+                </StyledHead> 
                 <CreateCustomerForm  onHandleSubmit={addCustomer}/>
+                </>
                 ) : (
                     ""
                 )
@@ -39,14 +44,3 @@ export default function CreateCustomer({customerList, setCustomerList, action}){
         </>
     )
 }
-
-export const StyledHead = styled.div`
-    border-bottom: 1px solid;
-    background-color: white;
-    position: fixed;
-    width: 100%;
-    height: 70px;
-    top: 0;
-    layer: 10; 
-    margin-bottom: 10px;  
-`
