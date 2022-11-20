@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
-import { getDateString, getTimeNowString } from "../utils/getDate";
+import { getDateString, getTimeAsString } from "../utils/getDate";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { LeftUserBtn, LinkedUserBtn, SaveBtn, Section, ShowUserLeftBtn } from "./styles/OrderFormStyles";
 
 
-export default function OrderCreateForm({userList, date, onHandleSubmit}){
+export default function OrderCreateForm({userList, date, time, onHandleSubmit}){
     const navigate = useNavigate(); 
     // for time and date setting
     const [orderType, setOrderType] = useState("Eintrag");
@@ -91,7 +91,7 @@ export default function OrderCreateForm({userList, date, onHandleSubmit}){
                     type="time"
                     name="order_time"
                     id="order_time"
-                    defaultValue= {getTimeNowString()}
+                    defaultValue= {getTimeAsString(time, 0)}
                     required
                     />
                 <label htmlFor="date">Datum</label>

@@ -109,8 +109,9 @@ export default function Home() {
               <StyledTimeText 
                 onClick={()=> {
                   setIdPosInHome(index); 
-                  navigate(`/orderCreate/${showDate}#${index}`)
-                  }}>{index.toString().padStart(2, '0')}:00</StyledTimeText>
+                  navigate(`/orderCreate/${getDateString(showDate)}-${index}`)
+                  }}
+                  >{index.toString().padStart(2, '0')}:00</StyledTimeText>
                 <OrderRow>
                   {entriesToday
                     .map((order) => order.date.hour === index ? (

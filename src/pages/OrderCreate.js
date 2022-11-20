@@ -8,10 +8,17 @@ import { getDateFromString, getDateString } from "../utils/getDate";
 import { UserContext } from "../utils/UserContext";
 
 export default function OrderCreate(){
+    // zeit und datum aus der url (11.11.2022-2) 
     let {dateString} = useParams();
-    if(dateString === undefined || dateString.length !== 10) {
-        dateString = getDateString(new Date());
+    let createAtTime = new Date().getHours();
+    if(dateString !== undefined || dateString >10) {
+      const tempNumber = Number(dateString.slice(11, dateString.length));
+      if(tempNumber >=0 || tempNumber<24) { createAtTime = tempNumber; }
+      dateString = dateString.slice(0, 10);
     }
+    if(dateString === undefined || dateString.length !== 10) {
+      dateString = getDateString(new Date());
+    } 
 
     const { user, userList, orderList, setOrderList } = useContext(UserContext);
 
@@ -38,6 +45,7 @@ export default function OrderCreate(){
             <CreateOrderForm 
                 userList={userList}
                 date={getDateFromString(dateString)} 
+                time={createAtTime}
                 onHandleSubmit={addOrder}/>
             <NavBarNewOrder page={"new"} date={dateString}/>
         </>
