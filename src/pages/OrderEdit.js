@@ -48,6 +48,7 @@ export default function OrderEdit(){
             <EditOrderForm 
                 order={order} 
                 userList={userList}
+                setIdPosInHome={setIdPosInHome}
                 onHandleSubmit={editOrder}/>
             <NavBarNewOrder page={"new"} dateString={order.date.dateString}/>
         </div>

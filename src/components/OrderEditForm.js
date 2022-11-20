@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DeleteBtn, LeftUserBtn, LinkedUserBtn, SaveBtn, Section, ShowUserLeftBtn } from "./styles/OrderFormStyles";
 
 
-export default function OrderEditForm({onHandleSubmit, order, userList}){
+export default function OrderEditForm({onHandleSubmit, order, userList, setIdPosInHome}){
     const navigate = useNavigate(); 
     // for time and date setting
     const [orderType, setOrderType] = useState(order.type);
@@ -50,6 +50,7 @@ export default function OrderEditForm({onHandleSubmit, order, userList}){
         const linkedUSerIdList =[];
         linkedUserList.forEach((user) => linkedUSerIdList.push(user.id));
         onHandleSubmit(orderId, orderType, order_titel, orderDateFull, note, linkedUSerIdList);
+        setIdPosInHome(orderDateFull.hour)
         navigate(`/home/${getDateString(orderDate)}`);
    }
 

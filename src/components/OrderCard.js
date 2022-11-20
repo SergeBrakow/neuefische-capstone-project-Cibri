@@ -18,8 +18,8 @@ export default function OrderCard({order, setIdPosInHome}){
                         <p>{getTimeAsString(order.date.hour, order.date.minute)}</p>
                 </CardSection>
                 <ButtonContainer>
-                    <button onClick={()=> navigate(`/orderView/${order.id}`)}>view</button>
-                    <button onClick={()=> navigate(`/orderEdit/${order.id}`)}>edit</button>
+                    <button onClick={()=> { setIdPosInHome(order.date.hour); navigate(`/orderView/${order.id}`)}}>view</button>
+                    <button onClick={()=> { setIdPosInHome(order.date.hour); navigate(`/orderEdit/${order.id}`)}}>edit</button>
                 </ButtonContainer>
             </div>
                 {showNote && <NoteDiv>

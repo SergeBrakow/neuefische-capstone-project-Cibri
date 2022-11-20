@@ -30,7 +30,6 @@ export default function OrderViewSection({userList, order}){
                             <ABtn key={linkedUserId}
                                 onClick={() =>{ navigate(`/userView/${linkedUserId}`)}}
                                 >{userList.find((user) => user.id === linkedUserId).name}</ABtn>
-                            // <P key={linkedUserId}>{userList.find((user) => user.id === linkedUserId).name}</P>
                         )
                     )
                 }
