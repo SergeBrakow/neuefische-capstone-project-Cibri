@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom"; 
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import styled from "styled-components";
 
 import { getDateString, getTimeNowString } from "../utils/getDate";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { DeleteBtn, LeftUserBtn, LinkedUserBtn, SaveBtn, Section, ShowUserLeftBtn } from "./styles/OrderFormStyles";
+import { LeftUserBtn, LinkedUserBtn, SaveBtn, Section, ShowUserLeftBtn } from "./styles/OrderFormStyles";
 
 
 export default function OrderCreateForm({userList, date, onHandleSubmit}){

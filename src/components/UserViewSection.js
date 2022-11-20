@@ -1,11 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getTimeAsString } from "../utils/getDate";
 import { OrderBox } from "./styles/OrderBox";
 import { ValueBox } from "./styles/ValueBox";
 
 export default function UserViewSection({user, orderList}){
-    const navigate = useNavigate();
     
     const ordersTheUserIsLinked = [];
     {orderList.filter((order) =>

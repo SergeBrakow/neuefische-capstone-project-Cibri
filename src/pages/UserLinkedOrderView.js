@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 
 import NavBarFooter from "../components/NavBarFooter";
 import { StyledHead } from "../components/styles/StyledHead";

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useParams} from "react-router-dom";
-import styled from "styled-components";
 
 import NavBarNewOrder from "../components/NavBarFooter";
 import EditOrderForm from "../components/OrderEditForm";
