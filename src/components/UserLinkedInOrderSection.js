@@ -7,13 +7,12 @@ import { ValueBox } from "./styles/ValueBox";
 export default function UserLinkedInOrderSection({user, orderList}){
     const navigate = useNavigate();
     
-    const ordersTheUserIsLinked = [];
+    const ordersTheUserIsLinkedIn = [];
     {orderList.filter((order) =>
         order.linkedUser.find((linkedUser) => linkedUser === user.id) !== undefined? 
-            ordersTheUserIsLinked.push(order): ""
+            ordersTheUserIsLinkedIn.push(order): ""
         )
     }
-
 
     window.scrollTo(0, 0);     
     return (
@@ -21,7 +20,7 @@ export default function UserLinkedInOrderSection({user, orderList}){
             <div>
                 <Name>{user.name} ist verlinkt in:</Name>
                 <ValueBox>
-                    { orderList.map((order) =>
+                    { ordersTheUserIsLinkedIn.map((order) =>
                         <OrderBox 
                             key={order.id}
                             onClick={()=> navigate(`/orderView/${order.id}`)}
