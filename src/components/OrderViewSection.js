@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getTimeAsString } from "../utils/getDate";
 import { MainBox } from "./styles/MainBox";
 
-export default function OrderViewSection({userList, order}){
+export default function OrderViewSection({customerList, userList, order}){
     const navigate = useNavigate();
     
     window.scrollTo(0, 0);     
@@ -30,6 +30,17 @@ export default function OrderViewSection({userList, order}){
                             <ABtn key={linkedUserId}
                                 onClick={() =>{ navigate(`/userView/${linkedUserId}`)}}
                                 >{userList.find((user) => user.id === linkedUserId).name}</ABtn>
+                        )
+                    )
+                }
+                <Name >verlinkte Kunden</Name>
+                {order.linkedCustomer.length === 0? (
+                    <P>-</P> 
+                    ) : (
+                        order.linkedCustomer.map((linkedCustomerId) => 
+                            <ABtn key={linkedCustomerId}
+                                onClick={() =>{ navigate(`/userView/${linkedCustomerId}`)}}
+                                >{customerList.find((customer) => customer.id === linkedCustomerId).customer_name}</ABtn>
                         )
                     )
                 }

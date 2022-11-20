@@ -7,7 +7,7 @@ import { StyledHead } from "../components/styles/StyledHead";
 import { UserContext } from "../utils/UserContext";
 
 export default function OrderView(){
-    const { userList, orderList } = useContext(UserContext);
+    const { userList, orderList, customerList} = useContext(UserContext);
     
     let {id} = useParams();
     const order = orderList.find( (order) => order.id === id);
@@ -19,6 +19,7 @@ export default function OrderView(){
         </StyledHead> 
         <OrderViewSection 
             order={order} 
+            customerList={customerList} 
             userList={userList}/>
         <NavBarFooter page={"back"}/>
         </>
