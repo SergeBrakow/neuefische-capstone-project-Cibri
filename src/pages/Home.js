@@ -17,7 +17,7 @@ import NeedLoginMessage from "../components/NeedLoginMessage";
 export default function Home() {
   const navigate = useNavigate(); 
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const { user, userList, orderList, setOrderList, idPosInHome, setIdPosInHome} = useContext(UserContext);
+  const { user, orderList, idPosInHome, setIdPosInHome} = useContext(UserContext);
 
   // current day to show ("11.11.2022")
   let {dateString} = useParams();
@@ -30,6 +30,7 @@ export default function Home() {
   const entriesToday = orderList.filter( (order) => order.date.dateString === dateString);
 
   const { pathname } = useLocation();
+  // to scroll up the time in the linke (normaly the time of the order the user worked wuth)
   useEffect(() => {
       setTimeout(() => {
         let lowestNumber = 24;
@@ -135,8 +136,7 @@ export default function Home() {
   );
 }
 
-
-export const StyledHead = styled.div`
+const StyledHead = styled.div`
   background-color: #74b49b ; 
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -148,7 +148,7 @@ export const StyledHead = styled.div`
   layer: 10; 
 `
 
-export const HeadNavBar =styled.div`
+const HeadNavBar =styled.div`
   border-bottom: 2px solid;
   border-color: gray;
   border-bottom-left-radius: 10px;
@@ -159,6 +159,7 @@ export const HeadNavBar =styled.div`
   position: fixed;
   width: 100%;
   height: 40px;
+
   button{
     background-color: #f4f9f4;
     border: 1px solid;
@@ -171,25 +172,25 @@ export const HeadNavBar =styled.div`
   }
 `
 
-export const HeadNavBarMidleElement = styled.div`
+const HeadNavBarMidleElement = styled.div`
   width: 100%;
   display: grid;
   width: 60%;
   margin: 2px;
 `
 
-export const HeadNavBarElement = styled.div`
+const HeadNavBarElement = styled.div`
   width: 100%;
   display: grid;
   width: 20%;
   margin: 2px;
 `
 
-export const StyledTimeLine = styled.div`
+const StyledTimeLine = styled.div`
   margin: 95px 0 49px 0; 
 `
 
-export const StyledOrder = styled.div`
+const StyledOrder = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -197,7 +198,7 @@ export const StyledOrder = styled.div`
   border-bottom: solid 1px;
 `
 
-export const StyledTimeText = styled.a`
+const StyledTimeText = styled.a`
     padding: 0px 10px 0px 10px ;
     margin: 5px;
     border-right: solid 1px;
@@ -216,7 +217,7 @@ export const StyledTimeText = styled.a`
     }
 `
 
-export const OrderRow=styled.div`
+const OrderRow=styled.div`
   display: flex;
   flex-direction: column;
   flex-basis: 100%;

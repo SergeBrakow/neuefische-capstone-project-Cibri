@@ -19,7 +19,7 @@ export default function NeedLoginMessage(){
   );
 }
 
-export const StyledWelcomeName = styled.div`
+const StyledWelcomeName = styled.div`
   height: 100px;
   margin-bottom: 100px;
   border-bottom: solid;
@@ -27,7 +27,7 @@ export const StyledWelcomeName = styled.div`
   border-radius: 10px;
 `
 
-export const LoginDiv = styled.section`
+const LoginDiv = styled.section`
   border-bottom: solid;
   border-color: #74b49b;
   border-radius: 10px;
@@ -49,7 +49,5 @@ export const LoginDiv = styled.section`
     item-align: right; 
     border: 1px solid;
     border-radius: 5px;
-    // width: 200px;
-    // height: 30px;
   }
 `

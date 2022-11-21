@@ -37,14 +37,6 @@ export default function UserLinkedInOrderSection({user, orderList}){
     );
 }
 
-export const Name = styled.p`
+const Name = styled.p`
     font-weight: bold; 
 `
-
-export const P=styled.p`
-    margin-top: -10px;
-    padding: 5px 15px;
-    background-color: lightgray;
-    border-radius: 15px;
-`
-

@@ -20,7 +20,7 @@ export default function New(){
     );
 }
 
-export const NewEntry=styled.div`
+const NewEntry=styled.div`
     height: 200px;
     margin: 40% 20%;
     padding: 10px;

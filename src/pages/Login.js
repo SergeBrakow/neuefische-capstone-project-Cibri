@@ -58,7 +58,7 @@ export default function Login() {
   );
 }
 
-export const StyledWelcomeName = styled.div`
+const StyledWelcomeName = styled.div`
 background-color: #74b49b ; 
   margin-bottom: 100px;
   border-bottom: solid;
@@ -66,7 +66,7 @@ background-color: #74b49b ;
   border-radius: 10px;
 `
 
-export const LoginDiv = styled.section`
+const LoginDiv = styled.section`
   border-bottom: solid;
   border-color: gray;
   border-radius: 10px;

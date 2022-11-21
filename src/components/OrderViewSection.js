@@ -70,6 +70,7 @@ const ABtn=styled.a`
     min-width: 45px;
     height: 25px;
     cursor: pointer;
+
     &: hover {
         background-color: white;
         border: none;
@@ -84,6 +85,7 @@ const Button= styled.button`
     background-color: #f4f9f4;
     border: 1px solid;
     border-radius:10px;
+    
     &: hover {
         background-color: white;
         border: none;

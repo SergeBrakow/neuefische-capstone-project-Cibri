@@ -43,7 +43,7 @@ export default function NavBarFooter (prop){
 }
 
 
-export const StyledNavBar = styled.section`
+const StyledNavBar = styled.section`
   border-top: 2px solid;
   background-color: #74b49b ; 
   border-color: gray;
@@ -58,7 +58,7 @@ export const StyledNavBar = styled.section`
   layer: 10; 
 `
 
-export const NavBarElement = styled.div `
+const NavBarElement = styled.div `
   width: 100%;
   display: grid;
   float: left;

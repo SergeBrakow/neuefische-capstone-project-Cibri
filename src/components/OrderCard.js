@@ -9,7 +9,6 @@ export default function OrderCard({order, setIdPosInHome}){
     const navigate = useNavigate();
     const { userList } = useContext(UserContext);
     
-
     return(
         <StyledCard >
             <div>
@@ -45,7 +44,7 @@ export default function OrderCard({order, setIdPosInHome}){
     );
 }
 
-export const StyledCard = styled.article` 
+const StyledCard = styled.article` 
     background-color: #f4f9f4;
     border-radius: 10px;
     margin: 5px;
@@ -54,6 +53,7 @@ export const StyledCard = styled.article`
     div{
         display: flex;
     } 
+
     button{
         background-color: #f4f9f4;
         margin: 5px;
@@ -70,13 +70,13 @@ export const StyledCard = styled.article`
     }
 `
 
-export const CardSection=styled.section`
+const CardSection=styled.section`
     flex: 9;
     padding-left: 15px;
     text-align: left;
 `
     
-export const NoteDiv=styled.div`
+const NoteDiv=styled.div`
     border-top: 1px solid;
     border-bottom: 1px solid;
     border-radius: 10px;
@@ -90,20 +90,15 @@ export const NoteDiv=styled.div`
         }
 `
 
-export const StyledPTitel=styled.p`
+const StyledPTitel=styled.p`
     font-weight: bold;
 `
-export const PBoltInShow=styled.p`
+
+const PBoltInShow=styled.p`
     font-weight: bold;
     padding-top: 10px;
 `
 
-export const ButtonContainer = styled.div`
+const ButtonContainer = styled.div`
     flex-direction: column;
-`
-    
-export const CardSideElements = styled.div`
-    position: absolute;
-    right: 1em;
-    top: 1em;
 `
