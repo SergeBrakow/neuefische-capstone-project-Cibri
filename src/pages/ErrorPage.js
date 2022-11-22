@@ -6,7 +6,7 @@ export default function ErrorPage() {
   return (
     <>
       <StyledWelcomeName>
-        <h1>Cibr2i</h1>
+        <h1>Cibri</h1>
         <p>your service app</p>
       </StyledWelcomeName>
       <LoginDiv>
