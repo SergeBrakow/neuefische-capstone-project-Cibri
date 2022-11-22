@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 import { StyledHead } from "../components/styles/StyledHead";
@@ -9,19 +9,31 @@ import { UserContext } from "../utils/UserContext";
 
 export default function UserView(){
     const { userList, orderList} = useContext(UserContext);
-    
+    const navigate = useNavigate();
     const {id} = useParams();
     const user = userList.find( (item) => item.id === id);
+
+    
+    useEffect(() => {
+        if (user === undefined){
+            navigate("/home")   
+            alert("Der Eintrag konnte nicht gefunden werden!");
+        }
+    },[])
 
     return(
         <>
         <StyledHead>
             <p>Detailansicht</p>
         </StyledHead> 
-            <UserViewSection
-                user={user}
-                orderList={orderList}/>
-        <NavBarFooter page={"back"}/>
+        {user !== undefined?
+            <>
+                <UserViewSection
+                    user={user}
+                    orderList={orderList}/>
+                <NavBarFooter page={"back"}/>
+            </>
+        :""}
         </>
     );
 }

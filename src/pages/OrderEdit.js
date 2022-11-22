@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useParams} from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams} from "react-router-dom";
 
 import NavBarNewOrder from "../components/NavBarFooter";
 import EditOrderForm from "../components/OrderEditForm";
@@ -8,9 +8,10 @@ import { UserContext } from "../utils/UserContext";
 
 export default function OrderEdit(){
     const { user, userList, customerList, orderList, setOrderList, setIdPosInHome } = useContext(UserContext);
+    const navigate = useNavigate();
 
     let {id} = useParams();
-    const order = orderList.find( (order) => order.id === id);
+    const order = (orderList.find( (order) => order.id === id));
 
     function editOrder(orderId, order_type, order_name, orderDateFull, note, linkedUserIdList, linkedCustomerIdList){
         setIdPosInHome(order.date.hour);
@@ -39,19 +40,30 @@ export default function OrderEdit(){
         setOrderList(orderList.filter((order) => order.id !== id));
     }
 
+    useEffect(() => {
+        if (order === undefined){
+            navigate("/home")   
+            alert("Der Eintrag konnte nicht gefunden werden!");
+        }
+    },[])
+
     window.scrollTo(0, 0);
     return(
         <div>
             <StyledHead>
                 <p>Eintrag bearbeiten</p>
-            </StyledHead> 
-            <EditOrderForm 
-                order={order} 
-                userList={userList}
-                setIdPosInHome={setIdPosInHome}
-                customerList={customerList}
-                onHandleSubmit={editOrder}/>
-            <NavBarNewOrder page={"new"} dateString={order.date.dateString}/>
+            </StyledHead>     
+            {order !== undefined?    
+            <>
+                <EditOrderForm 
+                    order={order} 
+                    userList={userList}
+                    setIdPosInHome={setIdPosInHome}
+                    customerList={customerList}
+                    onHandleSubmit={editOrder}/>      
+                <NavBarNewOrder page={"new"} dateString={order.date.dateString}/>
+            </>
+            :""}
         </div>
     );
 }

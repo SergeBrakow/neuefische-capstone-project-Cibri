@@ -1,16 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../utils/UserContext";
 import CustomerCreateForm from "../components/CustomerCreateForm";
 import CustomerViewSection from "../components/CustomerViewSection";
 import NavBarNewOrder from "../components/NavBarFooter";
 import { StyledHead } from "../components/styles/StyledHead";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateCustomer({ action }){
-
   const { orderList, customerList, setCustomerList } = useContext(UserContext);
   const {id} = useParams();
   const customer = customerList.find( (item) => item.id === id);
+  const navigate = useNavigate();
 
   function addCustomer(newCustomerId, newCustomer_name, newCustomer_street, newCustomer_code, newCustomer_city, newCustomer_note, 
                           newContact_prson_name, newContact_prson_tel, newContact_prson_email, newContact_prson_note){
@@ -31,8 +31,17 @@ export default function CreateCustomer({ action }){
       ])
   }
 
+  useEffect(() => {
+      if (customer === undefined){
+          navigate("/home")   
+          alert("Der Eintrag konnte nicht gefunden werden!");
+      }
+  },[])
+
   return(
-      <>
+    <>
+      {customer !== undefined? 
+        <>
           {action  === "create" ? (
               <>
               <StyledHead>
@@ -54,6 +63,8 @@ export default function CreateCustomer({ action }){
               ) : ""
           }
           <NavBarNewOrder page={"new"}/>
-      </>
+        </>
+      :""}
+    </>
   )
 }
