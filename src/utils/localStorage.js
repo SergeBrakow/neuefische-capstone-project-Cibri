@@ -32,7 +32,7 @@ export function fromLocalStorage(key){
         role: "user",
         rights : [ 
           { id: 1,
-            name: "crateOrder",
+            name: "createOrder",
             value: true,
           },
           { 
@@ -65,7 +65,7 @@ export function fromLocalStorage(key){
         role: "user",
         rights : [ 
           { id: 1,
-            name: "crateOrder",
+            name: "createOrder",
             value: true,
           },
           { 
@@ -98,7 +98,7 @@ export function fromLocalStorage(key){
         role: "user",
         rights : [ 
           { id: 1,
-            name: "crateOrder",
+            name: "createOrder",
             value: true,
           },
           { 
@@ -131,7 +131,7 @@ export function fromLocalStorage(key){
         role: "admin",
         rights : [ 
           { id: 1,
-            name: "crateOrder",
+            name: "createOrder",
             value: true,
           },
           { 
