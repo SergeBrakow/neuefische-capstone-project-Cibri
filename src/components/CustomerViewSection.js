@@ -17,31 +17,31 @@ export default function CustomerViewSection({customer, orderList}){
     return (
         <MainBox>
             <div>
-                <Name>Name: </Name>
+                <BoltP>Name: </BoltP>
                 <ValueBox>
-                    <P>{customer.customer_name}</P>
+                    <StyledP>{customer.customer_name}</StyledP>
                 </ValueBox>
-                <Name>Anschrift: </Name>
+                <BoltP>Anschrift: </BoltP>
                 <ValueBox>
-                    <P>{customer.adress_street}</P>
-                    <P>{customer.adress_code}</P>
-                    <P>{customer.adress_city}</P>
+                    <StyledP>{customer.adress_street}</StyledP>
+                    <StyledP>{customer.adress_code}</StyledP>
+                    <StyledP>{customer.adress_city}</StyledP>
                 </ValueBox>
-                <Name >Notizen</Name>
+                <BoltP >Notizen</BoltP>
                 <ValueBox>
                     {customer.customer_note ===""?
-                        <P>-</P> :  <P>{customer.customer_note}</P>
+                        <StyledP>-</StyledP> :  <StyledP>{customer.customer_note}</StyledP>
                     }
                 </ValueBox>
-                <Name>Ansprechpartner: </Name>
+                <BoltP>Ansprechpartner: </BoltP>
                 <ValueBox>
-                    <P>{customer.contact_prson_name}</P>
-                    <P>{customer.contact_prson_tel}</P>
-                    <P>{customer.contact_prson_email}</P>
-                    <P>{customer.contact_prson_note}</P>
-                    <Name >Notizen</Name>
+                    <StyledP>{customer.contact_prson_name}</StyledP>
+                    <StyledP>{customer.contact_prson_tel}</StyledP>
+                    <StyledP>{customer.contact_prson_email}</StyledP>
+                    <StyledP>{customer.contact_prson_note}</StyledP>
+                    <BoltP >Notizen</BoltP>
                     {customer.contact_prson_note ===""?
-                        <P>-</P> :  <P>{customer.contact_prson_note}</P>
+                        <StyledP>-</StyledP> :  <StyledP>{customer.contact_prson_note}</StyledP>
                     }
                 </ValueBox>
             </div>
@@ -49,11 +49,11 @@ export default function CustomerViewSection({customer, orderList}){
     );
 }
 
-const Name = styled.p`
+const BoltP = styled.p`
     font-weight: bold; 
 `
 
-const P=styled.p`
+const StyledP=styled.p`
     margin-top: -10px;
     padding: 5px 15px;
     background-color: lightgray;
