@@ -16,10 +16,10 @@ export default function UserViewSection({user, orderList}){
     return (
         <MainBox>
             <div>
-                <Name>Name: </Name>
+                <BoltNameP>Name: </BoltNameP>
                 <ValueBox>
-                    <P>{user.name}</P>
-                    <P>Role: {user.role}</P>
+                    <BoltP>{user.name}</BoltP>
+                    <BoltP>Role: {user.role}</BoltP>
                 </ValueBox>
                 <Name >Rechte</Name>
                 <ValueBox>
@@ -55,7 +55,7 @@ const Name = styled.p`
     font-weight: bold; 
 `
 
-const P=styled.p`
+const BoltP=styled.p`
     margin-top: -10px;
     padding: 5px 15px;
     background-color: lightgray;
