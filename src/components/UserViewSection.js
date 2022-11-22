@@ -27,7 +27,7 @@ export default function UserViewSection({user, orderList}){
                         <p key={right.id} >
                             <input
                                 type="checkbox"
-                                checked={right.value === true ? true: false}
+                                checked={right.value? true: false}
                                 readOnly
                             /> {right.name}
                         </p>
