@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { ValueBox } from "./styles/ValueBox";
 import { MainBox } from "./styles/MainBox";
 
-export default function CustomerViewSection({customer, orderList}){
-    const navigate = useNavigate();
+export default function CustomerViewSection({customer}){
   
     window.scrollTo(0, 0);     
     return (
