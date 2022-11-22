@@ -21,7 +21,7 @@ export default function UserViewSection({user, orderList}){
                     <BoltP>{user.name}</BoltP>
                     <BoltP>Role: {user.role}</BoltP>
                 </ValueBox>
-                <Name >Rechte</Name>
+                <BoltNameP >Rechte</BoltNameP>
                 <ValueBox>
                     {user.rights.map((right) => 
                         <p key={right.id} >
@@ -33,7 +33,7 @@ export default function UserViewSection({user, orderList}){
                         </p>
                     )}
                 </ValueBox>
-                <Name >verlinkte Termine</Name>
+                <BoltNameP >verlinkte Termine</BoltNameP>
                 <ValueBox>
                     {ordersTheUserIsLinked.map((order) =>
                         <OrderBox 
@@ -51,7 +51,7 @@ export default function UserViewSection({user, orderList}){
     );
 }
 
-const Name = styled.p`
+const BoltNameP = styled.p`
     font-weight: bold; 
 `
 
