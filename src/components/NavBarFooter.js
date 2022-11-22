@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getDateString } from "../utils/getDate";
 import { deleteFromLocalStorage } from "../utils/localStorage";
+import { UserContext } from "../utils/UserContext";
 
 
 export default function NavBarFooter (prop){
     const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
 
     function logout(){
+      setUser(null);
       deleteFromLocalStorage("loggedUser");
       navigate("/");
     }

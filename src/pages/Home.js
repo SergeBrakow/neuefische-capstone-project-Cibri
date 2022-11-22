@@ -32,30 +32,32 @@ export default function Home() {
   const { pathname } = useLocation();
   // to scroll up the time in the linke (normaly the time of the order the user worked wuth)
   useEffect(() => {
-      setTimeout(() => {
-        let lowestNumber = 24;
-        if(idPosInHome === 0) {
-          entriesToday.forEach(element => {
-            if(element.date.hour <lowestNumber) lowestNumber = element.date.hour;
-          });
-          // the fisrt 2 entries can be hidden behind the head bar
-          if(lowestNumber === 24){
-            lowestNumber = 8;
+      if(user !== "") {
+        setTimeout(() => {
+          let lowestNumber = 24;
+          if(idPosInHome === 0) {
+            entriesToday.forEach(element => {
+              if(element.date.hour <lowestNumber) lowestNumber = element.date.hour;
+            });
+            // the fisrt 2 entries can be hidden behind the head bar
+            if(lowestNumber === 24){
+              lowestNumber = 8;
+            } else {
+              lowestNumber = lowestNumber -2;
+            }
           } else {
-            lowestNumber = lowestNumber -2;
+            lowestNumber = idPosInHome-2;
           }
-        } else {
-          lowestNumber = idPosInHome-2;
-        }
-        if(lowestNumber <0) {lowestNumber = 0}
-        const element = document.getElementById(lowestNumber);
-        element.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+          if(lowestNumber <0) {lowestNumber = 0}
+          const element = document.getElementById(lowestNumber);
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
   }, [pathname]); // do this on route change  
 
 
   // in case somebody enter over the link /home without going over login
-  if(user === null) {
+  if(user === "") {
     return ( 
       <NeedLoginMessage/>
       );
