@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate, useParams} from "react-router-dom"; 
-import NavBarNewOrder from "../components/NavBarNewOrder";
+import NavBarFooter from "../components/NavBarFooter";
+import { MainBox } from "../components/styles/MainBox";
 
 
 export default function New(){
@@ -8,25 +9,35 @@ export default function New(){
     let {dateString} = useParams();
     return(
         <>
-        <NewEntry>
-            <button onClick={() => {navigate(`/createOrder/${dateString}`)}}>neuer Eintrag</button>
-            <button onClick={() => {navigate("/createCustomer")}}>neuer Kunde</button>
-        </NewEntry>
-        <NavBarNewOrder page={"new"}/>
+        <MainBox>
+            <NewEntry>
+                <button onClick={() => {navigate(`/orderCreate/${dateString}`)}}>neuer Eintrag</button>
+                <button onClick={() => {navigate("/customerCreate")}}>neuer Kunde</button>
+            </NewEntry>
+        </MainBox>
+        <NavBarFooter page={"back"}/>
         </>
     );
 }
 
-export const NewEntry=styled.div`
+const NewEntry=styled.div`
     height: 200px;
     margin: 40% 20%;
     padding: 10px;
     display: flex;
     flex-direction: column;
     button{
-        margin: 10px;
-        flex: auto;
+        height: 40px;
+        margin: 2px;
+        background-color: #f4f9f4;
         border-radius:10px;
-        border: 1px solid;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.43); 
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.43);
+        &: hover {
+            background-color: white;
+            border: none;
+            -webkit-box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.38); 
+            box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.38);
+        }   
     }
 `

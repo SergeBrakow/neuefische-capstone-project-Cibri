@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom"; 
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import styled from "styled-components";
-import { getDateString, getTimeNowString } from "../utils/getDate";
+import { getDateString } from "../utils/getDate";
+import {  SaveBtn, Section } from "./styles/OrderFormStyles";
 
 
 
-export default function CreateCustomerForm({onHandleSubmit}){
+export default function CustomerCreateForm({onHandleSubmit}){
     const navigate = useNavigate(); 
     const [adressCode, setAdressCode] = useState('');
     const customerId= nanoid();
@@ -26,7 +26,7 @@ export default function CreateCustomerForm({onHandleSubmit}){
         const limit = 5;
         setAdressCode(event.target.value.slice(0, limit));
     };
-
+ 
    return (
     <Section>
         <form onSubmit={createCustomer}>
@@ -99,28 +99,9 @@ export default function CreateCustomerForm({onHandleSubmit}){
                                 maxLength="150"
                             ></textarea>
                 </fieldset>
-                <button type="submit">Speichern</button>
+                <SaveBtn type="submit">Speichern</SaveBtn>
             </fieldset>
         </form>
     </Section>
    );
 }
-
-const Section = styled.section`
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    margin-top: 80px;
-    margin-bottom: 60px;
-    text-align: left;
-    fieldset {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        gap: 10px;
-        button {
-            height: 40px;
-            margin-top: 70px;
-        }
-    }
-`;
