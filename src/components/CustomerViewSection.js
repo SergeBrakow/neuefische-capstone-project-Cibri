@@ -5,14 +5,7 @@ import { MainBox } from "./styles/MainBox";
 
 export default function CustomerViewSection({customer, orderList}){
     const navigate = useNavigate();
-    const ordersTheCustomerIsLinked = [];
-
-    {orderList.filter((order) =>
-        order.linkedCustomer.find((linkedCustomer) => linkedCustomer === customer.id) !== undefined? 
-            ordersTheCustomerIsLinked.push(order): ""
-        )
-    }
-        
+  
     window.scrollTo(0, 0);     
     return (
         <MainBox>
