@@ -10,9 +10,9 @@ export default function NeedLoginMessage(){
       <p>your service app</p>
     </StyledWelcomeName>
     <LoginDiv>
-      <fieldset>
+      <div>
         <button onClick={()=> navigate("/")}>Sorry, but you need to login first!</button>
-      </fieldset>
+      </div>
     </LoginDiv>
   
   </div>
