@@ -25,9 +25,9 @@ export default function OrderCreateForm({userList, customerList, date, time, onH
     const [leftCustomerList, setLeftCustomerList] = useState(customerList); // user objects
     const [showCustomerLeft, setShowCustomerLeft ] = useState(false);
     
-
+    
     const orderId= nanoid();
-
+    
     function createOrder(event) {
         event.preventDefault();       
         const formData = new FormData(event.target);
@@ -41,8 +41,10 @@ export default function OrderCreateForm({userList, customerList, date, time, onH
         }
         const linkedUserIdList = [];
         const linkedCustomerIdList = [];
-        linkedUserList.forEach((user) => linkedUserIdList.push(user.id));
-        linkedCustomerList.forEach((customer) => linkedCustomerIdList.push(customer.id));
+
+        linkedUserList.map((user) => linkedUserIdList.push(user.id));
+        linkedCustomerList.map((customer) => linkedCustomerIdList.push(customer.id));
+
         onHandleSubmit(orderId, orderType, order_titel, orderDateFull, note, linkedUserIdList, linkedCustomerIdList);
         navigate(`/home/${getDateString(orderDate)}`);
    }
