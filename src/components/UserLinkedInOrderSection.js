@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getTimeAsString } from "../utils/getDate";
 import { MainBox } from "./styles/MainBox";
 import { OrderBox } from "./styles/OrderBox";
 import { ValueBox } from "./styles/ValueBox";
@@ -26,7 +27,7 @@ export default function UserLinkedInOrderSection({user, orderList}){
                             onClick={()=> navigate(`/orderView/${order.id}`)}
                             >
                             <p>{order.name}</p>
-                            <p>{order.date.dateString} - {order.date.hour}:{order.date.minute}</p>
+                            <p>{order.date.dateString} - {getTimeAsString(order.date.hour, order.date.minute)}</p>
                         </OrderBox>
                          )
                     }
