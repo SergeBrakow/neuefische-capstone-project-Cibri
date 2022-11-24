@@ -38,6 +38,7 @@ export default function OrderCreate(){
     ]);
   }
 
+  window.scrollTo(0, 0);
     return(
         <>
             <StyledHead>
